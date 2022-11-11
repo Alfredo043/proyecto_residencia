@@ -1,0 +1,197 @@
+/* IPAD */
+@media screen and (max-width: 768px) {
+  .cabeceraredes {
+    padding: 10px;
+  }
+  .contenedorcabecera {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .contenedorcabecera figure {
+    max-width: 200px;
+  }
+  .contenedorcabecera figure img {
+    width: 100%;
+  }
+  .alineacion {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .contenedoricono {
+    display: block;
+  }
+  .contenedorcabecera nav {
+    /* border: 5px yellow solid; */
+    width: 100%;
+  }
+  .contenedorcabecera nav span {
+    display: none;
+  }
+  .contenedormenu {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    margin: 10px;
+    /* min-width: 430px; */
+    background-color: transparent;
+    display: none;
+  }
+  .contenedormenu .linea {
+    border-bottom: 2px #333 dotted;
+    /* width: 100%; */
+    /* margin-bottom: 5px; */
+  }
+  .contenedormenu a {
+    margin: 10px 0px;
+    padding: 10px 0px;
+    display: block;
+  }
+  .contenedormenu a.activo {
+    border-bottom: 2px #333 dotted;
+  }
+  #btn_azul {
+    width: 100%;
+  }
+  /* ------------------------------ */
+  .contenedor_titulo {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .titulo_inicio {
+    margin-bottom: 20px;
+  }
+  /* .titulo {
+    line-height: 30px;
+  } */
+  #btn_naranja {
+    width: 100%;
+  }
+  .contenedor_titulo figure {
+    max-width: 90%;
+  }
+  .contenedor_titulo figure img {
+    width: 100%;
+  }
+  /* ------------------------------ */
+  .contenido_centrado {
+    padding: 0px 20px;
+  }
+  /* ------------------------------ */
+  .informacion_punto_venta {
+    padding: 20px 15px;
+  }
+  /* ------------------------------ */
+  .texto_experiencia {
+    padding: 0px 15px;
+  }
+  /* ------------------------------ */
+  .servicio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  /* ------------------------------ */
+  .section-acordeon .content-acordeon {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .doble {
+    width: 100%;
+  }
+  /* ------------------------------ */
+  #contenidofooter figure {
+    max-width: 200px;
+    /* margin-bottom: 15px; */
+  }
+  #contenidofooter figure img {
+    width: 100%;
+  }
+  /* ---------- CAPACITACIÓN ---------- */
+  .comenzar {
+    max-width: 100%;
+  }
+  .comenzar a {
+    max-width: 70%;
+  }
+  /* ---------- SOPORTE ---------- */
+  .titulo_descarga {
+    margin-bottom: 20px;
+  }
+  /* .botones a {
+    min-width: 50%;
+  } */
+  .informacion_soporte {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nuestro_servicio {
+    max-width: 100%;
+  }
+  .informacion_soporte figure {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+  .informacion_soporte figure img {
+    width: 100%;
+  }
+  .banner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .texto_banner {
+    text-align: center;
+  }
+  /* ---------- CONTACTO ---------- */
+  .informacion_contacto {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .informacion_contacto iframe {
+    width: 100%;
+  }
+  .nuestro_contacto {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  /* ---------- PLAYLIST ---------- */
+  .playlist {
+    /* border: 2px red solid; */
+    width: 40%;
+  }
+  .menutabs {
+    width: 100%;
+    /* height: 30rem; */
+    height: 17.7rem;
+    margin: 30px 0px;
+    box-shadow: 0px 3px 6px #cecece;
+    /* height: 70%; */
+    overflow-y: auto;
+  }
+  #contenedor_tabs {
+    /* border: 2px blue solid; */
+    width: 60%;
+    /* margin: 0px 15px; */
+    margin-left: 15px;
+  }
+}
