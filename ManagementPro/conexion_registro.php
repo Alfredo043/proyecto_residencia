@@ -7,10 +7,10 @@
         $Contra = $_POST['contrasena'];
 
         $conexion = mysqli_connect("localhost", "root", "", "proyecto");
-//COMPARA REPETICION
+        //COMPARA REPETICION
         $queryusuario = mysqli_query($conexion, "SELECT * FROM usuario WHERE Us_Email = '$Correo'");
         $nr = mysqli_num_rows($queryusuario);
-//BASE DE DATOS
+        //BASE DE DATOS
         if($nr == 0){
             $resulyId = mysqli_query($conexion, "SELECT MAX(Us_Cve_Usuario) as MaxId FROM usuario");
 
@@ -18,7 +18,6 @@
             if(mysqli_num_rows($resulyId)){
                 while($i = mysqli_fetch_assoc($resulyId)){
                     $idSig = $i['MaxId'];
-                    
                 }
             }
 
