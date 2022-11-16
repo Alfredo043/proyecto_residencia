@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2022 a las 17:43:35
+-- Tiempo de generación: 16-11-2022 a las 14:31:53
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `curso`
+--
+
+CREATE TABLE `curso` (
+  `Cu_Cve_Curso` decimal(18,0) NOT NULL,
+  `Cu_Titulo` varchar(50) DEFAULT NULL,
+  `Cu_Subtitulo` varchar(50) DEFAULT NULL,
+  `Es_Cve_Estado` varchar(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -95,12 +108,21 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Us_Cve_Usuario`, `Tu_Cve_Tipo_Usuario`, `Us_Descripcion`, `Us_Email`, `Us_Password`, `Es_Cve_Estado`) VALUES
-('1', '0', 'Jorge Aldana', 'jaldana@gmail.com', '123', ''),
-('2', '0', 'Marco Aldana', 'maldana@gmail.com', '1234', '');
+('1', '0', 'Jorge Aldana', 'jaldana@gmail.com', '123', 'BA'),
+('2', '0', 'Marco Aldana', 'maldana@gmail.com', '1234', 'AC'),
+('3', '0', 'Alfredo Aldana', 'aaldana@gmail.com', '12345', 'AC'),
+('4', '0', 'Maria Martinez', 'mariaaldana@gmail.com', '123456', 'AC'),
+('5', '0', 'Mario Martinez', 'marioaldana@gmail.com', '1234567', 'AC');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`Cu_Cve_Curso`);
 
 --
 -- Indices de la tabla `curso_video`
