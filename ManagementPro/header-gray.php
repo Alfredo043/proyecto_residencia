@@ -44,11 +44,19 @@
               <li><a href="soporte.php" class="linea">Soporte</a></li>
               <span>|</span>
               <li><a href="contacto.php" class="linea">Contacto</a></li>
+              <?php if($_SESSION['usuario']!=''){ ?>
               <li>
-                <a href="login.php" id="btn_azul"
+                <a href="./admin/usuarios/" id="btn_azul"
+                  >Administrar <i class="fa-solid fa-user"></i
+                ></a>
+              </li>
+              <?php }else{ ?>
+              <li>
+                <a href="./usuario/login/" id="btn_azul"
                   >Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i
                 ></a>
               </li>
+              <?php } ?>
             </ul>
           </nav>
         </div>

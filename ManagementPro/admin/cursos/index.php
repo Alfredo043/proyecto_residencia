@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <?php 
-        $page_title = 'Lista de usuarios';
+        $page_title = 'Lista de cursos';
         $page_base = '../../';
         include ("../../inc/base/head.php");
     ?>
@@ -21,6 +21,10 @@
           <figure>
             <img src="../../imagenes/logo_azul.png" alt="" />
           </figure>
+        </div>
+        <div class="col-12 pt-2 pb-2">
+          <span class="pull-start">Bienvenido <b><?php echo $_SESSION['nombre']; ?></b></span>
+          <a class="btn btn-sm btn-success float-end" href="./registro/">Agregar</a>
         </div>
         <div class="col-12">
             <?php
@@ -43,45 +47,45 @@
                 $iTotal = 0;
             ?>
             <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead class="">
-                <th>Clave</th>
-                <th>Tipo</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Estado</th>
-                <th>#</th>
-              </thead>
-              <tbody>
-                <?php
-                   while($row = mysqli_fetch_array($result)){
-                    $iTotal++;
-                    ?>
-                      <tr id="User<?php echo $row['Clave'] ?>">
-                        <td><?php echo $row['Clave'] ?></td>
-                        <td><?php echo $row['Tipo'] ?></td>
-                        <td><?php echo $row['Nombre'] ?></td>
-                        <td><?php echo $row['Email'] ?></td>
-                        <td><?php echo $row['Estado'] ?></td>
-                        <td class="text-center">
-                            <a class="text-dark" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <li><a class="dropdown-item" href="javascript:EliminarUsuario('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
-                            </ul>
-                        </td>
-                      </tr>
-                    <?php
-                   }
-                ?>
-              </tbody>
-              <tfoot>
-                   <tr>
-                    <td colspan="10">Total: <?php echo $iTotal ?></td>
-                   </tr>
-              </tfoot>
-            </table>
+              <table class="table table-bordered">
+                <thead class="">
+                  <th>Clave</th>
+                  <th>Tipo</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Estado</th>
+                  <th>#</th>
+                </thead>
+                <tbody>
+                  <?php
+                    while($row = mysqli_fetch_array($result)){
+                      $iTotal++;
+                      ?>
+                        <tr id="User<?php echo $row['Clave'] ?>">
+                          <td><?php echo $row['Clave'] ?></td>
+                          <td><?php echo $row['Tipo'] ?></td>
+                          <td><?php echo $row['Nombre'] ?></td>
+                          <td><?php echo $row['Email'] ?></td>
+                          <td><?php echo $row['Estado'] ?></td>
+                          <td class="text-center">
+                              <a class="text-dark" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="javascript:EliminarUsuario('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
+                              </ul>
+                          </td>
+                        </tr>
+                      <?php
+                    }
+                  ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                      <td colspan="10">Total: <?php echo $iTotal ?></td>
+                    </tr>
+                </tfoot>
+              </table>
             </div>
             <p id="MessageText" class="messagebox <?php echo ($_SESSION['error']!='')?'error':''; ?>"><?php echo $_SESSION['error']; ?></p>
         </div>

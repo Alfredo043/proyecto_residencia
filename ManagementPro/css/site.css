@@ -1116,3 +1116,33 @@ p.messagebox_info{
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+/* ---------- REGISTRAR VIDEO ---------- */
+.cursos {
+  /* background-image: url(imagenes/post-software.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+  min-height: 657px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+.contenedorvideo {
+  /* border: 3px yellow solid; */
+  background-color: var(--azul);
+  border-radius: 10px 10px 0px 0px;
+  height: 80px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titulovideo h3 {
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  color: var(--gris-intenso);
+  text-shadow: 1px 1px 1px #333;
+}

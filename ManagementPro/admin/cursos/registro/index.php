@@ -1,17 +1,21 @@
 <?php
     session_start();
-    include ("../../inc/conexion.php");
+    include ("../../../inc/conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php 
         $page_title = 'Registro de curso';
-        $page_base = '../../';
-        include ("../../inc/base/head.php");
+        $page_base = '../../../';
+        include ("../../../inc/base/head.php");
     ?>
   </head>
   <body>
+    <?php 
+        $page_base = '../../../';
+        include ("../../../inc/base/header.php");
+    ?>
     <section class="cursos">
       <div class="contenedoregistro">
         <div class="contenedorvideo">
