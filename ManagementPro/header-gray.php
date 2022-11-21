@@ -46,7 +46,11 @@
               <li><a href="soporte.php" class="linea">Soporte</a></li>
               <span>|</span>
               <li><a href="contacto.php" class="linea">Contacto</a></li>
+<<<<<<< HEAD
               <?php if(isset($_SESSION['usuario'])?$_SESSION['usuario']:''!=''){ ?>
+=======
+              <?php if($_SESSION['usuario']!=''){ ?>
+>>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
               <li>
                 <a href="./admin/usuarios/" id="btn_azul"
                   >Administrar <i class="fa-solid fa-user"></i
