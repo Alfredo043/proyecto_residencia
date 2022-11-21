@@ -30,7 +30,6 @@
             <?php
             try{
               $query = "";
-<<<<<<< HEAD
                 $query .= "SELECT Cr_Cve_Curso as Clave, ";
                 $query .= " Cr_Titulo as Titulo, ";
                 $query .= " Cr_Subtitulo as Subtitulo, ";
@@ -39,16 +38,6 @@
                 $query .= "FROM Curso ";
                 // $query .= " INNER JOIN Tipo_Usuario Tu ON Tu.Tu_Cve_Tipo_Usuario = Usuario.Tu_Cve_Tipo_Usuario ";
                 // $query .= "WHERE Usuario.Es_Cve_Estado <> 'BA' ";
-=======
-                $query .= "SELECT Us_Cve_Usuario as Clave, ";
-                $query .= " Tu_Descripcion as Tipo, ";
-                $query .= " Us_Descripcion as Nombre, ";
-                $query .= " Us_Email as Email, ";
-                $query .= " Usuario.Es_Cve_Estado as Estado ";
-                $query .= "FROM Usuario ";
-                $query .= " INNER JOIN Tipo_Usuario Tu ON Tu.Tu_Cve_Tipo_Usuario = Usuario.Tu_Cve_Tipo_Usuario ";
-                $query .= "WHERE Usuario.Es_Cve_Estado <> 'BA' ";
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
 
                 $result = mysqli_query($conn, $query);
             }catch(Exception $e){
@@ -61,15 +50,9 @@
               <table class="table table-bordered">
                 <thead class="">
                   <th>Clave</th>
-<<<<<<< HEAD
                   <th>Titulo</th>
                   <th>Subtitulo</th>
                   <th>Fecha</th>
-=======
-                  <th>Tipo</th>
-                  <th>Nombre</th>
-                  <th>Email</th>
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
                   <th>Estado</th>
                   <th>#</th>
                 </thead>
@@ -80,28 +63,18 @@
                       ?>
                         <tr id="User<?php echo $row['Clave'] ?>">
                           <td><?php echo $row['Clave'] ?></td>
-<<<<<<< HEAD
                           <td><?php echo $row['Titulo'] ?></td>
                           <td><?php echo $row['Subtitulo'] ?></td>
                           <td><?php echo $row['Fecha'] ?></td>
-=======
-                          <td><?php echo $row['Tipo'] ?></td>
-                          <td><?php echo $row['Nombre'] ?></td>
-                          <td><?php echo $row['Email'] ?></td>
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
                           <td><?php echo $row['Estado'] ?></td>
                           <td class="text-center">
                               <a class="text-dark" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                               </a>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-<<<<<<< HEAD
                                 <li><a class="dropdown-item" href="./edit/index.php?Cr_Cve_Curso=<?php echo $row['Clave'];?>"><i class="fa-solid fa-pencil"></i> Editar</a></li>
                                 <li><a class="dropdown-item" href="javascript:EliminarCurso('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
                                 <li><a class="dropdown-item" href="javascript:EliminarCurso('<?php echo $row['Clave']?>')"><i class="fa-solid fa-eye"></i> Video</a></li>
-=======
-                                <li><a class="dropdown-item" href="javascript:EliminarUsuario('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
                               </ul>
                           </td>
                         </tr>
@@ -126,11 +99,7 @@
         tipo.type = (tipo.type == "password")?"text":"password";
       }
 
-<<<<<<< HEAD
       function EliminarCurso(idUser){
-=======
-      function EliminarUsuario(idUser){
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
         
         $.ajax({
             type:'POST',

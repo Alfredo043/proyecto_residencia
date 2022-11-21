@@ -11,17 +11,10 @@
 
   try{
     $query = "UPDATE Usuario SET Es_Cve_Estado = 'BA' WHERE Us_Cve_Usuario ='$clave'";
-<<<<<<< HEAD
     $result = mysqli_query($conn, $query);
 
     if($result){
       echo "OK-El registro se ha actualizo con exito";
-=======
-    $result = mysqli_query($conn, $consulta);
-
-    if($result){
-      echo "El registro se ha actualizo con exito";
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
       // echo "El registro se ha eliminado con exito";
     }
     else{

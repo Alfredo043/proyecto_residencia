@@ -34,11 +34,7 @@
                 <input class="elementos" type="password" name="password" id="password" placeholder="Contraseña" required/>
                 <div class="recordar">
                     <input type="checkbox" id="show_password" name="show_password" onchange="changeCheckPass(this)" />
-<<<<<<< HEAD
                     <label for="show_password">Mostrar contraseña</label><br />
-=======
-                    <label for="show_password">Mostrar Contraseña</label><br />
->>>>>>> 7a6a334b95347326a4ff225c0779d96c56547b72
                 </div>
                 <!-- Cambiado para que me permitiera registrar -->
                 <button type="submit" class="btn_ingresar" name="iniciarSesion">Iniciar sesión</button>
