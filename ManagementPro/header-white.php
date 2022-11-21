@@ -26,9 +26,11 @@
       <div class="cabecera">
         <div class="ancho contenedorcabecera">
           <div class="alineacion">
-            <figure>
-              <img src="imagenes/logo_azul.png" alt="" />
-            </figure>
+            <a href="index.php">
+              <figure>
+                <img src="imagenes/logo_azul.png" alt="" />
+              </figure>
+            </a>
             <div class="contenedoricono">
               <i id="iconomenu" class="fas fa-bars fa-2x"></i>
             </div>

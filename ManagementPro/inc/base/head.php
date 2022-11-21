@@ -1,9 +1,9 @@
 <?php
-    if(isset($page_base)){
+    if(!isset($page_base)){
         $page_base = '../../';
     }
 
-    if(isset($page_title)){
+    if(!isset($page_title)){
         $page_tittle = 'Proyecto Capacitación';
     }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2022 a las 14:31:53
+-- Tiempo de generación: 21-11-2022 a las 19:41:39
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -28,11 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `curso` (
-  `Cu_Cve_Curso` decimal(18,0) NOT NULL,
-  `Cu_Titulo` varchar(50) DEFAULT NULL,
-  `Cu_Subtitulo` varchar(50) DEFAULT NULL,
+  `Cr_Cve_Curso` decimal(18,0) NOT NULL,
+  `Cr_Titulo` varchar(50) DEFAULT NULL,
+  `Cr_Subtitulo` varchar(50) DEFAULT NULL,
+  `Cr_Descripcion` text NOT NULL,
+  `Oper_Alta` varchar(15) NOT NULL,
+  `Fecha_Alta` date NOT NULL,
+  `Oper_Modif` varchar(15) NOT NULL,
+  `Fecha_Modif` date NOT NULL,
+  `Oper_Baja` varchar(15) NOT NULL DEFAULT '"',
+  `Fecha_Baja` date DEFAULT NULL,
   `Es_Cve_Estado` varchar(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `curso`
+--
+
+INSERT INTO `curso` (`Cr_Cve_Curso`, `Cr_Titulo`, `Cr_Subtitulo`, `Cr_Descripcion`, `Oper_Alta`, `Fecha_Alta`, `Oper_Modif`, `Fecha_Modif`, `Oper_Baja`, `Fecha_Baja`, `Es_Cve_Estado`) VALUES
+('1', 'SECCION 1', 'Ejemplo 1', 'Descripcion', '0', '2022-11-21', '', '0000-00-00', '\"', NULL, 'AC'),
+('2', 'SECCION 2', 'Ejemplo 2', 'Descripcion', '0', '2022-11-21', '', '0000-00-00', '\"', NULL, 'AC'),
+('3', 'SECCION 3', 'Ejemplo 3', 'Descripcion', '0', '2022-11-21', '', '0000-00-00', '\"', NULL, 'AC');
 
 -- --------------------------------------------------------
 
@@ -42,18 +58,11 @@ CREATE TABLE `curso` (
 
 CREATE TABLE `curso_video` (
   `Cv_Cve_Curso_Video` decimal(18,0) NOT NULL,
+  `Cr_Cve_Curso` decimal(18,0) NOT NULL,
   `Cv_Titulo` varchar(50) DEFAULT NULL,
   `Cv_Descripcion` varchar(100) DEFAULT NULL,
   `Cv_Url` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `curso_video`
---
-
-INSERT INTO `curso_video` (`Cv_Cve_Curso_Video`, `Cv_Titulo`, `Cv_Descripcion`, `Cv_Url`) VALUES
-('1', 'Crear base de datos', 'Aprende a crear una base de datos en el Sistema y realizar la configuración inicial de tu empresa.', 'https://youtu.be/LIo4vWmLQZg'),
-('2', 'Clientes', 'Conoce la forma más sencilla de capturar a tus clientes en el Punto de Venta', 'https://youtu.be/hknPGWIXnLw');
 
 -- --------------------------------------------------------
 
@@ -108,11 +117,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Us_Cve_Usuario`, `Tu_Cve_Tipo_Usuario`, `Us_Descripcion`, `Us_Email`, `Us_Password`, `Es_Cve_Estado`) VALUES
-('1', '0', 'Jorge Aldana', 'jaldana@gmail.com', '123', 'BA'),
+('1', '0', 'Jorge Aldana', 'jaldana@gmail.com', '123', 'AC'),
 ('2', '0', 'Marco Aldana', 'maldana@gmail.com', '1234', 'AC'),
-('3', '0', 'Alfredo Aldana', 'aaldana@gmail.com', '12345', 'AC'),
-('4', '0', 'Maria Martinez', 'mariaaldana@gmail.com', '123456', 'AC'),
-('5', '0', 'Mario Martinez', 'marioaldana@gmail.com', '1234567', 'AC');
+('3', '0', 'Leydi Aldana', 'laldana@gmail.com', '12345', 'AC');
 
 --
 -- Índices para tablas volcadas
@@ -122,13 +129,14 @@ INSERT INTO `usuario` (`Us_Cve_Usuario`, `Tu_Cve_Tipo_Usuario`, `Us_Descripcion`
 -- Indices de la tabla `curso`
 --
 ALTER TABLE `curso`
-  ADD PRIMARY KEY (`Cu_Cve_Curso`);
+  ADD PRIMARY KEY (`Cr_Cve_Curso`);
 
 --
 -- Indices de la tabla `curso_video`
 --
 ALTER TABLE `curso_video`
-  ADD PRIMARY KEY (`Cv_Cve_Curso_Video`);
+  ADD PRIMARY KEY (`Cv_Cve_Curso_Video`),
+  ADD UNIQUE KEY `Cv_Cve_Curso_Video` (`Cv_Cve_Curso_Video`) USING BTREE;
 
 --
 -- Indices de la tabla `tipo_usuario`
@@ -146,6 +154,12 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `curso_video`
+--
+ALTER TABLE `curso_video`
+  ADD CONSTRAINT `curso_video_ibfk_1` FOREIGN KEY (`Cr_Cve_Curso`) REFERENCES `curso` (`Cr_Cve_Curso`);
 
 --
 -- Filtros para la tabla `usuario`

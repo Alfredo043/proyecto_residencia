@@ -6,34 +6,39 @@
 <html lang="en">
   <head>
     <?php 
-        $page_title = 'Registor de usuario';
+        $page_title = 'Cuenta de usuario';
         $page_base = '../../';
         include ("../../inc/base/head.php");
     ?>
   </head>
   <body>
-    <section class="slidefoto">
+    <?php 
+        $page_base = '../../';
+        include ("../../inc/base/header.php");
+    ?>
+    <section class="cursos">
       <div class="contenedoregistro">
         <div class="contenedorlogotipo">
           <figure>
             <img src="../../imagenes/logo_gris.png" alt="" />
           </figure>
         </div>
-        <div class="contenedor_info_centro">
+        <div class="contenedor_cuenta">
             <!-- Comienza el metodo POST -->
-            <form id="FormRegistro" method="POST" action="javascript:sendForm()">
-                <!-- Añadipo por mi -->
-                <input class="elementos" type="text" name="nombre" id="nombre" placeholder="Nombre completo" required/>
-                <input class="elementos" type="text" name="email" id="email" placeholder="Correo electrónico" required/>
-                <input class="elementos" type="password" name="password" id="password" placeholder="Contraseña" required/>
-                <div class="recordar">
-                    <input type="checkbox" id="show_password" name="show_password" onchange="changeCheckPass(this)" />
-                    <label for="show_password">Mostrar contraseña</label><br />
-                </div>
-                <!-- Cambiado para que me permitiera registrar -->
-                <button type="submit" class="btn_ingresar" name="registrarUsuario">Registrarse</button>
-            </form>
-            <p>¿Ya tienes una cuenta? <a href="../login/" class="gradient-text">Iniciar sesión</a></p>
+            <center>
+              <br>
+              <h5>"BIENVENIDO"</h5><br>
+              <h5><b>Nombre: </b><?php echo $_SESSION['nombre']; ?></h5><br>
+              <h5><b>Correo: </b><?php echo $_SESSION['email']; ?></h5>
+            </center>
+            <br>
+            <hr />
+            <div class="ancho" id="copy">
+              <p>
+                &copy; 2022 | ManagementPro Inc | 12 South 1st. Street Ste. 1100, <br> San
+                José, CA, 95113
+              </p>
+            </div>
             <p id="MessageText" class="messagebox <?php echo ($_SESSION['error']!='')?'error':''; ?>"><?php echo $_SESSION['error']; ?></p>
         </div>
       </div>
@@ -57,7 +62,7 @@
 
         $.ajax({
             type:'POST',
-            url:'./action/save.php',
+            url:'./action/update.php',
             data:datos,
             success:function(data){
                 //Se habilitan las cajas de texto y botones

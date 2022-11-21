@@ -22,7 +22,7 @@
     }
 
     try{
-        $query = "SELECT Us_Cve_Usuario FROM Usuario WHERE Us_Email = '$Email' WHERE Es_Cve_Estado = 'AC'";
+        $query = "SELECT Us_Cve_Usuario FROM Usuario WHERE Us_Email = '$Email'";
         $result = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($result)){

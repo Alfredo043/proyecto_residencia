@@ -1,19 +1,26 @@
 <?php
     session_start();
     include ("../../inc/conexion.php");
+
+    if(!isset($_SESSION['usuario'])) $_SESSION['usuario'] = '';
+    if($_SESSION['usuario']!=''){
+      //Si ya esta logueado se redirige al inicio
+      header('Location: ../../');
+      exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php 
-        $page_title = 'Registor de usuario';
+        $page_title = 'Iniciar sesión';
         $page_base = '../../';
         include ("../../inc/base/head.php");
     ?>
   </head>
   <body>
     <section class="slidefoto">
-      <div class="contenedoregistro">
+      <div class="contenedorlogin">
         <div class="contenedorlogotipo">
           <figure>
             <img src="../../imagenes/logo_gris.png" alt="" />
@@ -23,7 +30,6 @@
             <!-- Comienza el metodo POST -->
             <form id="FormRegistro" method="POST" action="javascript:sendForm()">
                 <!-- Añadipo por mi -->
-                <input class="elementos" type="text" name="nombre" id="nombre" placeholder="Nombre completo" required/>
                 <input class="elementos" type="text" name="email" id="email" placeholder="Correo electrónico" required/>
                 <input class="elementos" type="password" name="password" id="password" placeholder="Contraseña" required/>
                 <div class="recordar">
@@ -31,9 +37,9 @@
                     <label for="show_password">Mostrar contraseña</label><br />
                 </div>
                 <!-- Cambiado para que me permitiera registrar -->
-                <button type="submit" class="btn_ingresar" name="registrarUsuario">Registrarse</button>
+                <button type="submit" class="btn_ingresar" name="iniciarSesion">Iniciar sesión</button>
             </form>
-            <p>¿Ya tienes una cuenta? <a href="../login/" class="gradient-text">Iniciar sesión</a></p>
+            <p>¿No tienes una cuenta? <a href="../registro/" class="gradient-text">Crear cuenta</a></p>
             <p id="MessageText" class="messagebox <?php echo ($_SESSION['error']!='')?'error':''; ?>"><?php echo $_SESSION['error']; ?></p>
         </div>
       </div>
@@ -65,8 +71,7 @@
                 $('.elementos').prop('readonly',false);
                 //Se asigna un mensaje de informacion
                 if(data.substring(0,2)=='OK'){
-                    $('.messagebox').html(data.substring(3));
-                    $('.messagebox').addClass('messagebox_info');    
+                  window.location.href='../../';
                 }else{
                     $('.messagebox').html(data);
                     $('.messagebox').addClass('messagebox_error');

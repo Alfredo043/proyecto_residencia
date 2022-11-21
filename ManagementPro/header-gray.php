@@ -26,9 +26,11 @@
       <div class="cabecera_gris">
         <div class="ancho contenedorcabecera">
           <div class="alineacion">
-            <figure>
-              <img src="imagenes/logo_azul.png" alt="" />
-            </figure>
+            <a href="index.php">
+              <figure>
+                <img src="imagenes/logo_azul.png" alt="" />
+              </figure>
+            </a>
             <div class="contenedoricono">
               <i id="iconomenu" class="fas fa-bars fa-2x"></i>
             </div>
@@ -44,11 +46,19 @@
               <li><a href="soporte.php" class="linea">Soporte</a></li>
               <span>|</span>
               <li><a href="contacto.php" class="linea">Contacto</a></li>
+              <?php if(isset($_SESSION['usuario'])?$_SESSION['usuario']:''!=''){ ?>
               <li>
-                <a href="login.php" id="btn_azul"
+                <a href="./admin/usuarios/" id="btn_azul"
+                  >Administrar <i class="fa-solid fa-user"></i
+                ></a>
+              </li>
+              <?php }else{ ?>
+              <li>
+                <a href="./usuario/login/" id="btn_azul"
                   >Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i
                 ></a>
               </li>
+              <?php } ?>
             </ul>
           </nav>
         </div>

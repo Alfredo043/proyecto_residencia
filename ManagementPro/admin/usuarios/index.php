@@ -12,15 +12,17 @@
     ?>
   </head>
   <body>
-    
+    <?php 
+    include ("../../inc/base/header.php");
+    ?>
     <section class="container" style="padding-top:60px;">
-      <div class="">
-        <div class="">
+      <div class="row">
+        <div class="col-12 mt-3">
           <figure>
-            <img src="../../imagenes/logo_gris.png" alt="" />
+            <img src="../../imagenes/logo_azul.png" alt="" />
           </figure>
         </div>
-        <div class="">
+        <div class="col-12">
             <?php
             try{
               $query = "";
