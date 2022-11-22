@@ -1,42 +1,51 @@
 <?php
     session_start();
-    include ("../../inc/conexion.php");
+    include ("../../../inc/conexion.php");
+
+    // generar la consulta para extraer los datos
+    $idCurso = trim(isset($_GET['id'])?$_GET['id']:'');
+
+    if($idCurso==''){
+      header('Location: ../'); //Regresamos a la lista de cursos
+      exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php 
-        $page_title = 'Lista de cursos';
-        $page_base = '../../';
-        include ("../../inc/base/head.php");
+        $page_title = 'Lista de videos del Curso';
+        $page_base = '../../../';
+        include ("../../../inc/base/head.php");
     ?>
   </head>
   <body>
     <?php 
-    include ("../../inc/base/header.php");
+    include ("../../../inc/base/header.php");
     ?>
     <section class="container" style="padding-top:60px;">
       <div class="row">
         <div class="col-12 mt-3">
           <figure>
-            <img src="../../imagenes/logo_azul.png" alt="" />
+            <img src="../../../imagenes/logo_azul.png" alt="" />
           </figure>
         </div>
         <div class="col-12 pt-2 pb-2">
           <span class="pull-start">Bienvenido <b><?php echo $_SESSION['nombre']; ?></b></span>
+          <a class="btn btn-sm btn-danger float-end ms-2" href="../">Volver</a>
           <a class="btn btn-sm btn-success float-end" href="./add/">Agregar</a>
         </div>
         <div class="col-12">
             <?php
             try{
-              $query = "";
+                $query = "";
                 $query .= "SELECT Cr_Cve_Curso as Clave, ";
                 $query .= " Cr_Titulo as Titulo, ";
                 $query .= " Cr_Subtitulo as Subtitulo, ";
                 $query .= " Fecha_Alta as Fecha, ";
                 $query .= " Curso.Es_Cve_Estado as Estado ";
                 $query .= "FROM Curso ";
-                $query .= "WHERE Es_Cve_Estado <> 'BA' ";
+                $query .= "WHERE Cr_Cve_Curso = '$idCurso' ";
 
                 $result = mysqli_query($conn, $query);
             }catch(Exception $e){
@@ -72,7 +81,6 @@
                               </a>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="./add/?id=<?php echo $row['Clave'];?>"><i class="fa-solid fa-pencil"></i> Editar</a></li>
-                                <li><a class="dropdown-item" href="./videos/?id=<?php echo $row['Clave']?>"><i class="fa-solid fa-eye"></i> Videos</a></li>
                                 <li><a class="dropdown-item" href="javascript:EliminarCurso('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
                               </ul>
                           </td>
