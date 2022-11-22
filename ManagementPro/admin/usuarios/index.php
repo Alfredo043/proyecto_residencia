@@ -1,6 +1,9 @@
 <?php
     session_start();
     include ("../../inc/conexion.php");
+
+    $baseuriseg = '../../';
+    include ("../../inc/segurity.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,10 @@
           <figure>
             <img src="../../imagenes/logo_azul.png" alt="" />
           </figure>
+        </div>
+        <div class="col-12 pt-2 pb-2">
+          <span class="pull-start">Bienvenido <b><?php echo $_SESSION['nombre']; ?></b></span>
+          
         </div>
         <div class="col-12">
             <?php

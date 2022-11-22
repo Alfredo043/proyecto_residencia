@@ -1,6 +1,9 @@
 <?php
     session_start();
     include ("../../inc/conexion.php");
+
+    $baseuriseg = '../../';
+    include ("../../inc/segurity.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
