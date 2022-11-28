@@ -19,5 +19,4 @@
     }catch(Exception $e){
         $_SESSION['error'] = 'Ocurrio un error: '.$e->getMessage();
     }
-    
 ?>

@@ -28,8 +28,8 @@
             <center>
               <br>
               <h5>"BIENVENIDO"</h5><br>
-              <h5><b>Nombre: </b><?php echo $_SESSION['nombre']; ?></h5><br>
-              <h5><b>Correo: </b><?php echo $_SESSION['email']; ?></h5>
+              <h5><b>Nombre: </b><?php echo isset($_SESSION['nombre'])?$_SESSION['nombre']:''; ?></h5><br>
+              <h5><b>Correo: </b><?php echo isset($_SESSION['email'])?$_SESSION['email']:''; ?></h5>
             </center>
             <br>
             <hr />

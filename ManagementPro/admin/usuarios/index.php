@@ -1,6 +1,9 @@
 <?php
     session_start();
     include ("../../inc/conexion.php");
+
+    $baseuriseg = '../../';
+    include ("../../inc/segurity.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,10 @@
           <figure>
             <img src="../../imagenes/logo_azul.png" alt="" />
           </figure>
+        </div>
+        <div class="col-12 pt-2 pb-2">
+          <span class="pull-start">Bienvenido <b><?php echo $_SESSION['nombre']; ?></b></span>
+          
         </div>
         <div class="col-12">
             <?php
@@ -68,6 +75,7 @@
                               <i class="fa-solid fa-ellipsis-vertical"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <li><a class="dropdown-item" href="./add/?id=<?php echo $row['Clave'];?>"><i class="fa-solid fa-pencil"></i> Editar</a></li>
                               <li><a class="dropdown-item" href="javascript:EliminarUsuario('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
                             </ul>
                         </td>
