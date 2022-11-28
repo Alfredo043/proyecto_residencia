@@ -10,6 +10,13 @@
 
     // generar la consulta para extraer los datos
     $idVideo = trim(isset($_GET['id'])?$_GET['id']:'');
+    $idCurso = trim(isset($_GET['cr'])?$_GET['cr']:'');
+
+    if($idCurso==''){
+      $SESSION['error'] = 'No se encontro el curso actual';
+      header('Location: ../');
+      exit();
+    }
 
     $bNuevo = true;
     
@@ -67,6 +74,7 @@
           <!-- Comienza el metodo POST -->
           <form id="FormRegistro" method="POST" action="javascript:sendForm()">
             <input type="hidden" name="Cv_Cve_Curso_Video" id="Cv_Cve_Curso_Video" value="<?php echo $idVideo ?>" />
+            <input type="hidden" name="Cr_Cve_Curso" id="Cr_Cve_Curso" value="<?php echo $idCurso ?>" />
             <!-- Añadipo por mi -->
             <input class="elementos" type="text" name="Cv_Titulo" id="Cv_Titulo" placeholder="Escribe el título" value="<?php echo $cv_titulo ?>" required/>
             <input class="elementos" type="text" name="Cv_Url" id="Cv_Url" placeholder="Pega el enlace del video" value="<?php echo $cv_url ?>" required/>

@@ -14,16 +14,17 @@
     $bNuevo = true;
     
     $us_descripcion = '';
-    $tu_descripcion = '';
+    $tu_cve_tipo_usuario = 0;
 
     if($idUser!=''){
       // $query = "SELECT * FROM Usuario WHERE Us_Cve_Usuario = '$idUser'";
+      $query = "";
       $query .= "SELECT Us_Cve_Usuario, ";
-                $query .= " Tu_Descripcion, ";
-                $query .= " Us_Descripcion ";
-                $query .= "FROM Usuario ";
-                $query .= " INNER JOIN Tipo_Usuario Tu ON Tu.Tu_Cve_Tipo_Usuario = Usuario.Tu_Cve_Tipo_Usuario ";
-                $query .= "WHERE Us_Cve_Usuario = '$idUser' ";
+      $query .= " Usuario.Tu_Cve_Tipo_Usuario, ";
+      $query .= " Us_Descripcion ";
+      $query .= "FROM Usuario ";
+      $query .= " INNER JOIN Tipo_Usuario Tu ON Tu.Tu_Cve_Tipo_Usuario = Usuario.Tu_Cve_Tipo_Usuario ";
+      $query .= "WHERE Us_Cve_Usuario = '$idUser' ";
       $result = mysqli_query($conn, $query);
 
       if(mysqli_num_rows($result)){
@@ -31,7 +32,7 @@
         $row = mysqli_fetch_array($result);
 
         $us_descripcion = $row['Us_Descripcion'];
-        $tu_descripcion = $row['Tu_Descripcion'];
+        $tu_cve_tipo_usuario = $row['Tu_Cve_Tipo_Usuario'];
         $bNuevo = false;
       }else{
         $idUser = '';
@@ -70,20 +71,35 @@
         <div class="contenedor_info_centro">
           <!-- Comienza el metodo POST -->
           <form id="FormRegistro" method="POST" action="javascript:sendForm()">
-            <input type="hidden" name="Cr_Cve_Curso" id="Cr_Cve_Curso" value="<?php echo $idUser ?>" />
+            <input type="hidden" name="Us_Cve_Usuario" id="Us_Cve_Usuario" value="<?php echo $idUser ?>" />
             <!-- Añadipo por mi -->
             <input class="elementos" type="text" name="Us_Descripcion" id="Us_Descripcion" placeholder="Escribe el nombre" value="<?php echo $us_descripcion ?>" required/>
             <!-- <input class="elementos" type="text" name="Tu_Descripcion" id="Tu_Descripcion" placeholder="Escribe el tipo de usuario" value="<?php echo $tu_descripcion ?>" required/> -->
-            <select class="elementos" name="Tu_Descripcion">
-              <option value=""><?php echo $tu_descripcion ?></option>
-              <option value=""> Administrador </option>
-              <option value=""> Cliente </option>
-              <option value=""> Partner </option>
+            <select class="elementos" name="Tu_Cve_Tipo_Usuario" id="Tu_Cve_Tipo_Usuario">
+              <option value="" <?php echo ($tu_cve_tipo_usuario=='')?'selected':''; ?>>Seleciona un tipo</option>
+              <?php 
+              $query = "";
+              $query .= "SELECT Tu_Cve_Tipo_Usuario as Clave, Tu_Descripcion as Descripcion ";
+              $query .= "FROM Tipo_Usuario WHERE Es_Cve_Estado = 'AC' ";
+              $result = mysqli_query($conn, $query);
+
+              if(mysqli_num_rows($result)){
+                //Existe el curso asi que lo buscamos
+                while($row = mysqli_fetch_array($result)){
+                  ?>
+                  <option value="<?php echo $row['Clave'] ?>" <?php echo ($row['Clave']==$tu_cve_tipo_usuario)?'selected':''; ?>>
+                    <?php echo $row['Descripcion'] ?>
+                  </option>
+                  <?php 
+                }
+              }
+              $result->close();
+            ?>
             </select>
             <!-- Cambiado para que me permitiera registrar -->
             <div class="opciones">
-            <button type="submit" class="btn_ingresar" name="btnAdd"><?php echo ($bNuevo)?'Agregar':'Editar'; ?></button>
-            <button type="button" class="btn_ingresar" name="btnCancel"  onClick="pageBack()">Cancelar</button>
+              <button type="submit" class="btn_ingresar" name="btnAdd"><?php echo ($bNuevo)?'Agregar':'Guardar'; ?></button>
+              <button type="button" class="btn_ingresar" name="btnCancel"  onClick="pageBack()">Cancelar</button>
             </div>
           </form>
           <p id="MessageText" class="messagebox <?php echo ($_SESSION['error']!='')?'error':''; ?>"><?php echo $_SESSION['error']; ?></p>

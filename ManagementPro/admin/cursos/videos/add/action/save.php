@@ -10,6 +10,7 @@
     
     $IdUsuario = $_SESSION['usuario'];
     $IdVideo = (isset($_POST['Cv_Cve_Curso_Video']))?$_POST['Cv_Cve_Curso_Video']:'';
+    $IdCurso = (isset($_POST['Cr_Cve_Curso']))?$_POST['Cr_Cve_Curso']:'';
 
     $Titulo = (isset($_POST['Cv_Titulo']))?$_POST['Cv_Titulo']:'';
     $Enlace = (isset($_POST['Cv_Url']))?$_POST['Cv_Url']:'';
@@ -17,6 +18,11 @@
 
     // date_default_timezone_set("America/Mexico_City");
     // $fechaActual = date('Y-m-d H:i:s');
+
+    if($IdCurso==''){
+        echo 'Advertencia: No se encontro el id del curso';
+        return;
+    }
 
     if($Titulo==''){
         echo 'Advertencia: Falta el título';
@@ -49,9 +55,9 @@
             $LastId = 0;
 
             //Buscamos el siguiente Id
-            $query = "SELECT MAX(Cv_Cve_Curso_Video) as LastId FROM Curso_Video";
+            $query = "SELECT MAX(Cv_Cve_Curso_Video) as LastId FROM Curso_Video ";
             $result = mysqli_query($conn, $query);
-
+            
             if(mysqli_num_rows($result)){
                 $row = mysqli_fetch_assoc($result);
                 $LastId = $row['LastId'];

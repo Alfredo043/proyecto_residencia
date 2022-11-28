@@ -73,7 +73,7 @@
             <textarea class="elementos" rows="3" name="Cr_Descripcion" id="Cr_Descripcion" placeholder="Escribe la descripción"><?php echo $cr_descripcion ?></textarea>
             <!-- Cambiado para que me permitiera registrar -->
             <div class="opciones">
-            <button type="submit" class="btn_ingresar" name="btnAdd"><?php echo ($bNuevo)?'Agregar':'Editar'; ?></button>
+            <button type="submit" class="btn_ingresar" name="btnAdd"><?php echo ($bNuevo)?'Agregar':'Guardar'; ?></button>
             <button type="button" class="btn_ingresar" name="btnCancel"  onClick="pageBack()">Cancelar</button>
             </div>
           </form>

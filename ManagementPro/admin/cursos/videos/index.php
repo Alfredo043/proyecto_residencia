@@ -3,9 +3,9 @@
     include ("../../../inc/conexion.php");
 
     // generar la consulta para extraer los datos
-    $idVideo = trim(isset($_GET['id'])?$_GET['id']:'');
+    $idCurso = trim(isset($_GET['id'])?$_GET['id']:'');
 
-    if($idVideo==''){
+    if($idCurso==''){
       header('Location: ../'); //Regresamos a la lista de cursos
       exit();
     }
@@ -31,9 +31,9 @@
           </figure>
         </div>
         <div class="col-12 pt-2 pb-2">
-          <span class="pull-start">Bienvenido <b><?php echo $_SESSION['nombre']; ?></b></span>
+          <span class="pull-start">Videos del Curso: <b><?php echo Existe_Clave('Curso','Cr_Cve_Curso',$idCurso,'Cr_Titulo','') ?></b></span>
           <a class="btn btn-sm btn-danger float-end ms-2" href="../">Volver</a>
-          <a class="btn btn-sm btn-success float-end" href="./add/">Agregar</a>
+          <a class="btn btn-sm btn-success float-end" href="./add/?cr=<?php echo $idCurso ?>">Agregar</a>
         </div>
         <div class="col-12">
             <?php
@@ -43,9 +43,11 @@
                 $query .= " Cv_Titulo as Titulo, ";
                 $query .= " Cv_Descripcion as Descripcion, ";
                 $query .= " Cv_Url as Enlace, ";
+                $query .= " Curso_Video.Cr_Cve_Curso as Curso, ";
                 $query .= " Curso_Video.Es_Cve_Estado as Estado ";
                 $query .= "FROM Curso_Video ";
-                $query .= "WHERE Es_Cve_Estado <> 'BA' ";
+                $query .= " INNER JOIN Curso ON Curso_Video.Cr_Cve_Curso = Curso.Cr_Cve_Curso ";
+                $query .= "WHERE Curso_Video.Es_Cve_Estado <> 'BA' AND Curso_Video.Cr_Cve_Curso = '$idCurso' ";
 
                 $result = mysqli_query($conn, $query);
             }catch(Exception $e){
@@ -80,7 +82,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                               </a>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="./add/?id=<?php echo $row['Clave'];?>"><i class="fa-solid fa-pencil"></i> Editar</a></li>
+                                <li><a class="dropdown-item" href="./add/?id=<?php echo $row['Clave'];?>&cr=<?php echo $row['Curso'];?>"><i class="fa-solid fa-pencil"></i> Editar</a></li>
                                 <li><a class="dropdown-item" href="javascript:EliminarVideo('<?php echo $row['Clave']?>')"><i class="fa-solid fa-trash"></i> Eliminar</a></li>
                               </ul>
                           </td>
