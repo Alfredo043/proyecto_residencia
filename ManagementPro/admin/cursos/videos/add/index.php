@@ -115,7 +115,7 @@
                 $('.elementos').prop('readonly',false);
                 //Se asigna un mensaje de informacion
                 if(data.substring(0,2)=='OK'){
-                  window.location.href='../';
+                  window.location.href='../?id=<?php echo $idCurso; ?>';
                     //$('.messagebox').html(data.substring(3));
                     //$('.messagebox').addClass('messagebox_info');    
                 }else{

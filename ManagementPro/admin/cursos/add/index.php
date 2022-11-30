@@ -10,6 +10,7 @@
 
     // generar la consulta para extraer los datos
     $idCurso = trim(isset($_GET['id'])?$_GET['id']:'');
+    $TipoUsuario = trim(isset($_GET['id'])?$_GET['id']:'');
 
     $bNuevo = true;
     
@@ -67,10 +68,37 @@
           <!-- Comienza el metodo POST -->
           <form id="FormRegistro" method="POST" action="javascript:sendForm()">
             <input type="hidden" name="Cr_Cve_Curso" id="Cr_Cve_Curso" value="<?php echo $idCurso ?>" />
+            <input type="hidden" name="Tu_Cve_Tipo_Usuario" id="Tu_Cve_Tipo_Usuario" value="<?php echo $TipoUsuario ?>" />
             <!-- Añadipo por mi -->
             <input class="elementos" type="text" name="Cr_Titulo" id="Cr_Titulo" placeholder="Escribe el título" value="<?php echo $cr_titulo ?>" required/>
             <input class="elementos" type="text" name="Cr_Subtitulo" id="Cr_Subtitulo" placeholder="Escribe el subtítulo" value="<?php echo $cr_subtitulo ?>" required/>
             <textarea class="elementos" rows="3" name="Cr_Descripcion" id="Cr_Descripcion" placeholder="Escribe la descripción"><?php echo $cr_descripcion ?></textarea>
+
+            
+            <div class="elementoslabel">
+            <label for="" class="">Seleciona los tipos de usuario</label>
+            <?php 
+              $query = "";
+              $query .= "SELECT Tu_Cve_Tipo_Usuario as Clave, Tu_Descripcion as Descripcion ";
+              $query .= "FROM Tipo_Usuario WHERE Es_Cve_Estado = 'AC' ";
+              $result = mysqli_query($conn, $query);
+
+              if(mysqli_num_rows($result)){
+                //Existe el curso asi que lo buscamos
+                while($row = mysqli_fetch_array($result)){
+                  ?>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="TipoUsuario_<?php echo $row['Clave']?>" name="TipoUsuario" value="<?php echo $row['Clave']?>">
+                    <label class="form-check-label" for="TipoUsuario_<?php echo $row['Clave']?>">
+                      <?php echo $row['Descripcion'];?>
+                    </label>
+                  </div>
+                  <?php 
+                }
+              }
+              $result->close();
+            ?>
+            </div>
             <!-- Cambiado para que me permitiera registrar -->
             <div class="opciones">
             <button type="submit" class="btn_ingresar" name="btnAdd"><?php echo ($bNuevo)?'Agregar':'Guardar'; ?></button>
@@ -87,8 +115,17 @@
       }
 
       function sendForm(){
-        var datos = $('#FormRegistro').serialize();
+        var tipo = '';
+        $('input[name="TipoUsuario"]:checked').each( function(index) {
+          // your code here
+            if(tipo!='') tipo+=',';
+            tipo+=$(this).val();
+        });
 
+        $('[name="Tu_Cve_Tipo_Usuario"]').val(tipo);
+        var datos = $('#FormRegistro').serialize();
+        console.log(datos);
+        
         //Se deshabilitan las cajas de texto y botones
         $('.btn_ingresar').prop('disabled',true);
         $('.elementos').prop('readonly',true);
@@ -96,7 +133,7 @@
         //Se quita el mensaje si tiene informacion
         $('.messagebox').removeClass('messagebox_error');
         $('.messagebox').removeClass('messagebox_info');
-
+        
         $.ajax({
             type:'POST',
             url:'./action/save.php',

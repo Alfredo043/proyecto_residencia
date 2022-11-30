@@ -15,6 +15,11 @@
     $Subtitulo = (isset($_POST['Cr_Subtitulo']))?$_POST['Cr_Subtitulo']:'';
     $Descripcion = (isset($_POST['Cr_Descripcion']))?$_POST['Cr_Descripcion']:'';
 
+    $TipoUsuario = (isset($_POST['Tu_Cve_Tipo_Usuario']))?$_POST['Tu_Cve_Tipo_Usuario']:'';
+
+    // echo $TipoUsuario;
+    // return;
+
     date_default_timezone_set("America/Mexico_City");
     $fechaActual = date('Y-m-d H:i:s');
 
@@ -29,6 +34,11 @@
     }
 
     if($Descripcion==''){
+        //echo 'Falta la descripción';
+        //return;
+    }
+
+    if($TipoUsuario==''){
         //echo 'Falta la descripción';
         //return;
     }
@@ -84,6 +94,42 @@
             $query .= "   '".$_SESSION['usuario']."', "; //Usuario
             $query .= "   '$fechaActual', "; //Fecha actual
             $query .= "   'AC')";
+
+            // if($TipoUsuario=='')
+            {
+                $LastId = 0;
+                
+                //Buscamos el siguiente Id
+                $query = "SELECT MAX(Cr_Cve_Curso) as LastId FROM Curso_Tipo_Usuario";
+                $result = mysqli_query($conn, $query);
+    
+                if(mysqli_num_rows($result)){
+                    $row = mysqli_fetch_assoc($result);
+                    $LastId = $row['LastId'];
+                }
+    
+                $result->close();
+                
+                //El ultimo id se suma uno para obtener el siguiente
+                $NextId = $LastId + 1;
+                $IdCurso = $NextId;
+                
+                // $query = "AND";
+                $query = "";
+                $query .= "INSERT INTO Curso_Tipo_Usuario(";
+                $query .= "   Cr_Cve_Curso, ";
+                $query .= "   Tu_Cve_Tipo_Usuario ";
+                $query .= ")VALUES( ";
+                $query .= "   $IdCurso, ";
+                $query .= "   '$TipoUsuario')";
+            }//else{
+    
+                //Si es edicion se actualizan los datos
+            //     $query = "";
+            //     $query .= "UPDATE Curso_Tipo_Usuario SET ";
+            //     $query .= " Tu_Cve_Tipo_Usuario = '".$TipoUsuario."' ";
+            //     $query .= "WHERE Cr_Cve_Curso = '$IdCurso' ";
+            // }
         }else{
 
             //Si es edicion se actualizan los datos

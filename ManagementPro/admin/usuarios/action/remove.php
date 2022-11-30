@@ -9,6 +9,11 @@
     return;
   }
 
+  if($clave==$_SESSION['usuario']){
+    echo 'No puede eliminar el usuario logeado';
+    return;
+  }
+
   try{
     $query = "UPDATE Usuario SET Es_Cve_Estado = 'BA' WHERE Us_Cve_Usuario ='$clave'";
     $result = mysqli_query($conn, $query);

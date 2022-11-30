@@ -79,7 +79,7 @@
             $query .= "   Es_Cve_Estado ";
             $query .= ")VALUES( ";
             $query .= "   $IdVideo, ";
-            $query .= "   1, "; //Tipo usuario 0 - Usuario
+            $query .= "   $IdCurso, "; //Tipo usuario 0 - Usuario
             $query .= "   '$Titulo', ";
             $query .= "   '$Descripcion', ";
             $query .= "   '$Enlace', ";
