@@ -64,7 +64,7 @@
                       $iTotal++;
                       ?>
                         <tr id="Curso<?php echo $row['Clave'] ?>">
-                          <td><?php echo $row['Clave'] ?></td>
+                          <td><a href="./add/?id=<?php echo $row['Clave'];?>"><?php echo $row['Clave'] ?></a></td>
                           <td><?php echo $row['Titulo'] ?></td>
                           <td><?php echo $row['Subtitulo'] ?></td>
                           <td><?php echo $row['Fecha'] ?></td>
