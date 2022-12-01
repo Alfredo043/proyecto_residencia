@@ -10,7 +10,6 @@
 
     // generar la consulta para extraer los datos
     $idCurso = trim(isset($_GET['id'])?$_GET['id']:'');
-    $TipoUsuario = trim(isset($_GET['id'])?$_GET['id']:'');
 
     $bNuevo = true;
     
@@ -68,7 +67,7 @@
           <!-- Comienza el metodo POST -->
           <form id="FormRegistro" method="POST" action="javascript:sendForm()">
             <input type="hidden" name="Cr_Cve_Curso" id="Cr_Cve_Curso" value="<?php echo $idCurso ?>" />
-            <input type="hidden" name="Tu_Cve_Tipo_Usuario" id="Tu_Cve_Tipo_Usuario" value="<?php echo $TipoUsuario ?>" />
+            <input type="hidden" name="Tu_Cve_Tipo_Usuario" id="Tu_Cve_Tipo_Usuario" value="" />
             <!-- Añadipo por mi -->
             <input class="elementos" type="text" name="Cr_Titulo" id="Cr_Titulo" placeholder="Escribe el título" value="<?php echo $cr_titulo ?>" required/>
             <input class="elementos" type="text" name="Cr_Subtitulo" id="Cr_Subtitulo" placeholder="Escribe el subtítulo" value="<?php echo $cr_subtitulo ?>" required/>
@@ -115,11 +114,15 @@
       }
 
       function sendForm(){
-        var tipo = '';
+        var tipo = "<tr><td>1</td><td>2</td><td>3</td>td>4</td></tr>"; //TipoUsuario
+        console.log(tipo.split("<tr>"));
         $('input[name="TipoUsuario"]:checked').each( function(index) {
           // your code here
             if(tipo!='') tipo+=',';
             tipo+=$(this).val();
+            tipo.forEach(function(tipo){
+              console.log(tipo);
+            });
         });
 
         $('[name="Tu_Cve_Tipo_Usuario"]').val(tipo);
