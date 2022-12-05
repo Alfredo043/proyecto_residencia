@@ -109,8 +109,7 @@
         <div class="menutabs">
           <div class="check-video">
             <a href="#op1" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>1. Crear Base
-              de Datos</a
+              ><i class="tamañoicono fa-solid fa-circle-play"></i><?php echo $row["Cv_Titulo"]; ?></a
             >
           </div>
         </div>
@@ -119,7 +118,7 @@
         <article id="op1">
           <div id="contenedoryoutube">
             <iframe
-              src="https://www.youtube.com/embed/LIo4vWmLQZg"
+              src="<?php echo $row["Cv_Url"]; ?>"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -129,10 +128,7 @@
           <div class="descripcion">
             <p class="negritas">Descripción</p>
             <hr />
-            <p>
-              Aprende a crear una base de datos en el Sistema y realizar la
-              configuración inicial de tu empresa.
-            </p>
+            <p><?php echo $row["Cv_Descripcion"]; ?></p>
           </div>
         </article>
       </section>
