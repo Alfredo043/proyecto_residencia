@@ -78,8 +78,10 @@
             <label for="" class="">Seleciona los tipos de usuario</label>
             <?php 
               $query = "";
-              $query .= "SELECT Tu_Cve_Tipo_Usuario as Clave, Tu_Descripcion as Descripcion ";
-              $query .= "FROM Tipo_Usuario WHERE Es_Cve_Estado = 'AC' ";
+              $query .= "SELECT Tu.Tu_Cve_Tipo_Usuario as Clave, Tu.Tu_Descripcion as Descripcion, IFNULL(Ctu.Tu_Cve_Tipo_Usuario, -1) as Marcado ";
+              $query .= "FROM Tipo_Usuario Tu ";
+              $query .= " LEFT JOIN Curso_Tipo_Usuario Ctu ON Ctu.Tu_Cve_Tipo_Usuario = Tu.Tu_Cve_Tipo_Usuario AND Ctu.Cr_Cve_Curso = '$idCurso' ";
+              $query .= "WHERE Tu.Es_Cve_Estado = 'AC' ";
               $result = mysqli_query($conn, $query);
 
               if(mysqli_num_rows($result)){
@@ -87,7 +89,7 @@
                 while($row = mysqli_fetch_array($result)){
                   ?>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="TipoUsuario_<?php echo $row['Clave']?>" name="TipoUsuario" value="<?php echo $row['Clave']?>">
+                    <input class="form-check-input" type="checkbox" id="TipoUsuario_<?php echo $row['Clave']?>" name="TipoUsuario" value="<?php echo $row['Clave']?>" <?php echo ($row['Marcado']=='-1')?'':'checked'; ?>>
                     <label class="form-check-label" for="TipoUsuario_<?php echo $row['Clave']?>">
                       <?php echo $row['Descripcion'];?>
                     </label>
@@ -114,20 +116,16 @@
       }
 
       function sendForm(){
-        var tipo = "<tr><td>1</td><td>2</td><td>3</td>td>4</td></tr>"; //TipoUsuario
-        console.log(tipo.split("<tr>"));
+        var tipo = "";
+
         $('input[name="TipoUsuario"]:checked').each( function(index) {
           // your code here
             if(tipo!='') tipo+=',';
             tipo+=$(this).val();
-            tipo.forEach(function(tipo){
-              console.log(tipo);
-            });
         });
 
         $('[name="Tu_Cve_Tipo_Usuario"]').val(tipo);
         var datos = $('#FormRegistro').serialize();
-        console.log(datos);
         
         //Se deshabilitan las cajas de texto y botones
         $('.btn_ingresar').prop('disabled',true);
@@ -148,8 +146,8 @@
                 //Se asigna un mensaje de informacion
                 if(data.substring(0,2)=='OK'){
                   window.location.href='../';
-                    //$('.messagebox').html(data.substring(3));
-                    //$('.messagebox').addClass('messagebox_info');    
+                  //$('.messagebox').html(data.substring(3));
+                  //$('.messagebox').addClass('messagebox_info');    
                 }else{
                     $('.messagebox').html(data);
                     $('.messagebox').addClass('messagebox_error');

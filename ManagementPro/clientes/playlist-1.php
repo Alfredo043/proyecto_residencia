@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal de capacitación ManagementPro</title>
     <link rel="icon" type="image/png" href="../imagenes/fondo_curso.jpg" />
-    <link rel="stylesheet" href="../estilo.css" />
+    <link rel="stylesheet" href="../css/site.css" />
     <link rel="stylesheet" href="../movil.css" />
     <link rel="stylesheet" href="../ipad.css" />
     <link
@@ -81,12 +81,28 @@
         </div>
       </div>
     </header>
+    <?php
+        include "../inc/conexion.php";
+        $todos="SELECT * FROM Curso_Video";
+        $resultado = mysqli_query($conn, $todos);
+        while ($row = mysqli_fetch_assoc($resultado)){
+          echo $row["Cv_Titulo"]."<br>";
+          echo $row["Cv_Url"]."<br>";
+          echo $row["Cv_Descripcion"]."<br><br>";
+        // }
+    ?>
     <div class="division ancho">
       <div class="playlist">
         <h2 class="subtitulo_azul">Configuración inicial Retail</h2>
+        <div class="tiempo">
         <div class="check">
           <i class="tamañoicono fa-solid fa-circle-play"></i>
           <p>7 clases</p>
+        </div>
+        <div class="check">
+          <i class="tamañoicono fa-regular fa-clock"></i>
+          <p>2hrs. 45min</p>
+        </div>
         </div>
         <hr />
 
@@ -96,48 +112,6 @@
               ><i class="tamañoicono fa-solid fa-circle-play"></i>1. Crear Base
               de Datos</a
             >
-          </div>
-          <div class="check-video">
-            <a href="#op2" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>2. Catálogo de
-              clientes</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op3" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>3. Catálogo de
-              productos</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op4" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>4. Carga
-              masiva de clientes y productos</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op5" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>5. Carga
-              inicial de Inventarios</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op6" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>6. Alta de
-              cajas y operadores</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op7" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>7. Operación
-              del Punto de Venta</a
-            >
-          </div>
-          <div class="check-video">
-            <a href="#op8" id="btn2" class="link"
-              ><i class="tamañoicono fa-solid fa-circle-play"></i>8. Consulta de
-              Precios, Movimientos de Almacén
-            </a>
           </div>
         </div>
       </div>
@@ -161,144 +135,12 @@
             </p>
           </div>
         </article>
-        <article id="op2">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/hknPGWIXnLw"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Conocerás todos los campos que puedes utilizar para dar de alta la
-              información de los clientes.
-            </p>
-          </div>
-        </article>
-        <article id="op3">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/XPJgSLKJVq4"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Conoce la pantalla y aprende donde y cómo debes capturar cada uno
-              de tus productos de manera manual en el Punto de Venta.
-            </p>
-          </div>
-        </article>
-        <article id="op4">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/itRk_r5_-SU"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              ¿Demasiados productos para capturarlos uno por uno? No te
-              preocupes, aprende a realizar una carga masiva de productos desde
-              un archivo en formato MS Excel.
-            </p>
-          </div>
-        </article>
-        <article id="op5">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/krTWF1adMPs"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Realiza la carga inicial de tus inventarios y configura el sistema
-              para que los productos se descuenten del inventario con cada
-              venta.
-            </p>
-          </div>
-        </article>
-        <article id="op6">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/wHnLWIp1oa4"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Realiza el alta de las cajas registradoras que utilizarás en tu
-              negocio, así como el alta de todos los operadores. ¡Descúbrelo!
-            </p>
-          </div>
-        </article>
-        <article id="op7">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/gP9BKqxBXb8"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Conoce cuales son las funciones principales para la operación del
-              punto de venta. (ventas, cancelaciones, cobros y Corte de caja)
-            </p>
-          </div>
-        </article>
-        <article id="op8">
-          <div id="contenedoryoutube">
-            <iframe
-              src="https://www.youtube.com/embed/ldR_SEmiDgs"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="descripcion">
-            <p class="negritas">Descripción</p>
-            <hr />
-            <p>
-              Aprende a realizar: Consulta de precios, Retiro de Valores,
-              Movimientos de Almacén, Devolución de Clientes, Lista de
-              Funciones.
-            </p>
-          </div>
-        </article>
       </section>
     </div>
+    <?php
+      }
+      mysqli_free_result($resultado);
+    ?>
     <footer>
       <div id="contenidofooter" class="ancho">
         <figure>

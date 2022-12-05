@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal de capacitación ManagementPro</title>
     <link rel="icon" type="image/png" href="imagenes/fondo_curso.jpg" />
-    <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="css/site.css" />
     <link rel="stylesheet" href="movil.css" />
     <link rel="stylesheet" href="ipad.css" />
     <link

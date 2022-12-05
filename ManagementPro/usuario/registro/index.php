@@ -26,7 +26,7 @@
                 <input class="elementos" type="text" name="nombre" id="nombre" placeholder="Nombre completo" required/>
                 <input class="elementos" type="text" name="email" id="email" placeholder="Correo electrónico" required/>
                 <input class="elementos" type="password" name="password" id="password" placeholder="Contraseña" required/>
-                <div class="recordar">
+                <div class="mostrarcontra">
                     <input type="checkbox" id="show_password" name="show_password" onchange="changeCheckPass(this)" />
                     <label for="show_password">Mostrar contraseña</label><br />
                 </div>

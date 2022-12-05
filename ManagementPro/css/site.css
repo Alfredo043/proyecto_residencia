@@ -698,10 +698,6 @@ footer hr {
   padding: 8px 0px;
 }
 .nuestro_servicio .check {
-  /* max-width: 600px; */
-  /* display: flex;
-  justify-content: left;
-  align-items: stretch; */
   padding: 8px 0px;
 }
 .informacion_soporte figure {
@@ -785,9 +781,6 @@ footer hr {
   text-align: left;
 }
 .playlist .check {
-  /* max-width: 600px; */
-  /* border: 2px green solid; */
-  /* color: var(--naranja); */
   display: flex;
   justify-content: left;
   align-items: center;
@@ -799,91 +792,14 @@ footer hr {
   padding-right: 10px;
   font-size: 20px;
 }
-/* .playlist .section-acordeon {
-  margin-top: 28px;
-  padding: 0;
-} */
-/* .playlist .section-acordeon .acordeon { */
-/* border: 1px green solid; */
-/* border-radius: 5px;
-  box-shadow: 0px 3px 6px #cecece;
-} */
-/* .section-acordeon .acordeon-titulo-video {
-  max-width: 850px; */
-/* background: #efefef; */
-/* box-shadow: 0px 3px 6px #ccc; */
-/* box-shadow: 0 6px 6px -6px #777; */
-/* border: 0;
-  border-radius: 5px;
-  line-height: 2.8;
-  padding: 10px 16px;
-  font-size: 14px;
-  margin: 0;
-  gap: 5px;
-  display: flex;
-  justify-content: left;
-  align-items: stretch;
-  cursor: pointer;
-} */
-/* #icono { */
-/* border: 1px green solid; */
-/* width: 18px;
-} */
-/* .section-acordeon .flecha {
-  margin: 10px 5px;
-  color: var(--naranja);
-  font-size: 18px;
-} */
-/* .contenedor-videos {
-  display: flex;
-  flex-direction: column;
-} */
-/* .check-clas { */
-/* border: 2px green solid; */
-/* display: flex;
-  justify-content: left;
-  align-items: center;
-} */
-/* .videos {
-  padding: 1rem;
-  line-height: 1.5rem;
-  border-top: 1px solid;
-  border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
-  max-width: 800px;
-  margin: 0;
-  display: none;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1em 1em 1.5em;
-} */
-/* .check-video { */
-/* border: 2px green solid; */
-/* display: flex;
-  justify-content: left;
-  align-items: center; */
-/* margin: 25px 33px; */
-/* } */
-/* .informacion p {
-  margin: 20px 30px 0px;
-} */
 .menutabs {
   height: 389px;
   width: 100%;
   border: 1px solid #ddd;
   background: #f1f1f1;
   overflow-y: scroll;
-
-  /* width: 100%; */
-  /* height: 30rem; */
-  /* height: 24.3rem; */
   margin: 30px 0px;
   box-shadow: 0px 3px 6px #cecece;
-  /* height: 70%; */
-  /* overflow-y: auto; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  flex-wrap: nowrap; */
 }
 .check-video:hover {
   background-color: #0003;
@@ -891,10 +807,7 @@ footer hr {
 .check-video a {
   width: 100%;
   display: block;
-  /* margin-bottom: 15px; */
-  /* padding: 8px 0px; */
   padding: 1rem 1rem;
-  /* text-align: center; */
   text-decoration: none;
   /* border: 1px #999 solid; */
   color: #333;
@@ -902,9 +815,6 @@ footer hr {
   justify-content: left;
   align-items: stretch;
 }
-/* .menutabs a:nth-child(3) {
-  margin-bottom: 0;
-} */
 #contenedor_tabs {
   /* border: 2px blue solid; */
   width: 50%;
@@ -912,17 +822,11 @@ footer hr {
   margin-left: 35px;
 }
 #contenedor_tabs article {
-  padding: 20px 0px;
-  margin: auto;
-}
-/* #contenedor_tabs h2 {
-  color: #a2ddfa;
-  padding-bottom: 15px;
-} */
-#contenedor_tabs article {
-  min-width: 45%;
-  margin: 0;
   /* border: 2px red solid; */
+  padding: 20px 0px;
+  min-width: 45%;
+  margin: auto;
+  margin: 0;
 }
 #contenedoryoutube {
   height: 0;
@@ -1036,7 +940,7 @@ footer hr {
   margin: auto;
   margin-top: 20px;
 }
-.recordar {
+.mostrarcontra {
   margin: auto;
   margin-left: 15px;
   display: flex;
@@ -1080,12 +984,19 @@ input[type="checkbox"] {
   background-clip: text;
   color: transparent;
 }
-/* ---------- REGISTRAR VIDEO ---------- */
+/* -------- PANEL ADMINISTRATIVO -------- */
+/* ---------- AGREGAR CURSO ---------- */
+.opciones {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.opciones button {
+  margin: 10px;
+}
+
+/* ---------- AGREGAR VIDEO ---------- */
 .cursos {
-  /* background-image: url(imagenes/post-software.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; */
   min-height: 657px;
   display: flex;
   justify-content: center;
@@ -1126,12 +1037,8 @@ p.messagebox_info {
   padding-bottom: 12px;
 }
 
-/* ---------- REGISTRAR VIDEO ---------- */
+/* ---------- AGREGAR VIDEO ---------- */
 .cursos {
-  /* background-image: url(imagenes/post-software.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; */
   min-height: 657px;
   display: flex;
   justify-content: center;
@@ -1156,7 +1063,7 @@ p.messagebox_info {
   text-shadow: 1px 1px 1px #333;
 }
 
-/* ---------- ADMINISTRADOR CUENTA ---------- */
+/* ---------- CUENTA INICIADA ---------- */
 .contenedor_cuenta {
   /* border: 3px blue solid; */
   width: 100%;
@@ -1167,11 +1074,8 @@ p.messagebox_info {
 .contenedor_cuenta #copy p {
   margin: 0;
 }
-.opciones {
+.playlist .tiempo {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
-}
-.opciones button {
-  margin: 10px;
 }

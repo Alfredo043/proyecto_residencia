@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal de capacitación ManagementPro</title>
     <link rel="icon" type="image/png" href="imagenes/fondo_curso.jpg" />
-    <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="css/site.css" />
     <link rel="stylesheet" href="movil.css" />
     <link rel="stylesheet" href="ipad.css" />
     <link
@@ -37,16 +37,25 @@
           su punto de venta ManagementPro (Retail) ¡Disfrútalo!
         </p>
       </div>
+      <?php
+          include "inc/conexion.php";
+          $todos="SELECT * FROM Curso";
+          $resultado = mysqli_query($conn, $todos);
+          while ($row = mysqli_fetch_assoc($resultado)){
+            // echo $row["Cr_Titulo"]."<br>";
+            // echo $row["Cr_Subtitulo"]."<br><br>";
+          // }
+        ?>
       <div class="modulos-capacitaciones">
         <article class="etapa">
-          <h2 class="subtitulo_naranja">SECCIÓN 1</h2>
-          <p>Configuración Retail</p>
+          <h2 class="subtitulo_naranja"><?php echo $row["Cr_Titulo"]; ?></h2>
+          <p><?php echo $row["Cr_Subtitulo"]; ?></p>
           <!-- <br /> -->
           <div class="comenzar">
             <a href="clientes/playlist-1.php" id="btn_naranja"> Comenzar</a>
           </div>
         </article>
-        <article id="nivel" class="etapa">
+        <!-- <article id="nivel" class="etapa">
           <h2 class="subtitulo_naranja">SECCIÓN 2</h2>
           <p>Configuración Retail</p>
           <div class="comenzar">
@@ -101,8 +110,12 @@
           <div class="comenzar">
             <a href="#" id="btn_naranja"> Comenzar</a>
           </div>
-        </article>
+        </article> -->
       </div>
+      <?php
+        }
+        mysqli_free_result($resultado);
+      ?>
     </section>
     <?php
       include "footer.php";
