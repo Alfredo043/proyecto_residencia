@@ -29,7 +29,8 @@
   </head>
   <body>
     <?php
-      include "header-gray.php";
+      $page_base = './';
+      include "./inc/base/header-gray.php";
     ?>
     <div class="fondo_gris">
       <div class="ancho contenedor_titulo">
