@@ -172,7 +172,13 @@ body {
 }
 /* ------------------------------ */
 .fondo_gris {
-  background-color: var(--gris-suave);
+  background: linear-gradient(
+    180deg,
+    rgba(239, 239, 239, 1) 0%,
+    rgba(1, 38, 57, 0.2) 50%,
+    rgba(239, 239, 239, 0.2) 100%
+  );
+  /* background-color: var(--gris-suave); */
   padding: 50px;
   min-height: 475px;
   display: flex;
@@ -391,9 +397,6 @@ body {
   margin-bottom: 20px;
   text-align: center;
 }
-/* .nuestros_requerimientos article:nth-child(3) {
-  margin-bottom: 0;
-} */
 .iconorequerimiento i {
   font-size: 35px;
   color: var(--naranja);
@@ -593,7 +596,7 @@ footer hr {
 .modulos article:hover {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 }
 .etapa {
@@ -601,7 +604,7 @@ footer hr {
   overflow: hidden;
 }
 .etapa:hover .comenzar {
-  top: 60%;
+  top: 45%;
 }
 .etapa p {
   padding-bottom: 20px;
@@ -662,6 +665,34 @@ footer hr {
   justify-content: flex-start;
   align-items: center;
 }
+/* ---------- LOGROS ---------- */
+.logros {
+  padding: 20px;
+}
+.contenido_left {
+  /* margin: auto; */
+  max-width: 749px;
+  text-align: left;
+  padding-left: 20px;
+  /* border: 3px green solid; */
+}
+.contenido_left .titulo {
+  padding: 20px 0px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 35px;
+  text-align: left;
+  color: var(--azul);
+}
+.logros .modulos {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
 /* ---------- SOPORTE ---------- */
 .titulo_descarga {
   /* border: 3px green solid; */
@@ -1078,4 +1109,82 @@ p.messagebox_info {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.linea2 {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linea2 .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.linea2 hr {
+  width: 150px;
+  height: 3px;
+  background-color: var(--naranja);
+  border: none;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+/* ---------- PROGRESO ---------- */
+@keyframes growProgressBar {
+  0%,
+  33% {
+    --pgPercentage: 0;
+  }
+  100% {
+    --pgPercentage: var(--value);
+  }
+}
+
+@property --pgPercentage {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+div[role="progressbar"] {
+  --size: 6rem;
+  --fg: #369;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      closest-side,
+      white 80%,
+      transparent 0 99.9%,
+      white 0
+    ),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+  position: absolute;
+  right: 90px;
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) "%";
+}
+
+/* demo */
+body {
+  margin: 0;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  height: 100vh;
 }

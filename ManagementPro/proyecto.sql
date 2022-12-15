@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2022 a las 06:57:53
+-- Tiempo de generación: 15-12-2022 a las 22:48:41
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `avance`
+--
+
+CREATE TABLE `avance` (
+  `Cr_Cve_Curso` decimal(18,0) NOT NULL,
+  `Cv_Cve_Curso_Video` decimal(18,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -46,11 +57,11 @@ CREATE TABLE `curso` (
 --
 
 INSERT INTO `curso` (`Cr_Cve_Curso`, `Cr_Titulo`, `Cr_Subtitulo`, `Cr_Descripcion`, `Oper_Alta`, `Fecha_Alta`, `Oper_Modif`, `Fecha_Modif`, `Oper_Baja`, `Fecha_Baja`, `Es_Cve_Estado`) VALUES
-('1', 'SECCIÓN 1', 'Configuración Retail 1', 'En esta sección daremos un vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('2', 'SECCIÓN 2', 'Configuración Retail 2', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('3', 'SECCIÓN 3', 'Configuración Retail 3', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('4', 'SECCIÓN 4', 'Punto de Venta Retail 4', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('5', 'SECCIÓN 5', 'Punto de Venta Retail 5', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-04', '', '0000-00-00', '\"', NULL, 'AC');
+('1', 'NIVEL BÁSICO 1', 'Configuración Inicial', 'En esta sección daremos un vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('2', 'NIVEL BÁSICO 2', 'Configuración Inicial', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('3', 'NIVEL INTERMEDIO 1', 'Configuración inicial Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('4', 'NIVEL AVANZADO 1', 'ManagementPro Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('5', 'NIVEL AVANZADO 2', 'ManagementPro Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-04', '', '0000-00-00', '\"', NULL, 'AC');
 
 -- --------------------------------------------------------
 
@@ -71,8 +82,8 @@ INSERT INTO `curso_tipo_usuario` (`Cr_Cve_Curso`, `Tu_Cve_Tipo_Usuario`) VALUES
 ('1', '0'),
 ('2', '0'),
 ('3', '0'),
-('4', '0'),
-('5', '0');
+('4', '2'),
+('5', '3');
 
 -- --------------------------------------------------------
 
@@ -94,48 +105,48 @@ CREATE TABLE `curso_video` (
 --
 
 INSERT INTO `curso_video` (`Cv_Cve_Curso_Video`, `Cr_Cve_Curso`, `Cv_Titulo`, `Cv_Descripcion`, `Cv_Url`, `Es_Cve_Estado`) VALUES
-('1', '1', '1. Crear Base de Datos', 'Aprende a crear una base de datos en el sistema y realizar la configuración inicial de tu empresa.', 'https://youtu.be/LIo4vWmLQZg', 'AC'),
-('2', '1', '2. Catálogo de Clientes', 'Conocerás todos los campos que puedes utilizar para dar de alta la información de los clientes.', 'https://youtu.be/hknPGWIXnLw', 'AC'),
-('3', '1', '3. Catálogo de Productos', 'Conoce la pantalla y aprende donde y cómo debes capturar cada uno de tus productos de manera manual en el Punto de Venta.', 'https://youtu.be/XPJgSLKJVq4', 'AC'),
-('4', '1', '4. Carga Masiva de Clientes y Productos', '¿Demasiados productos para capturarlos uno por uno? No te preocupes, aprende a realizar una carga masiva de productos desde un archivo en formato MS Excel.', 'https://youtu.be/itRk_r5_-SU', 'AC'),
-('5', '1', '5. Carga Inicial de Inventarios', 'Realiza la carga inicial de tus inventarios y configura el sistema para que los productos se descuenten del inventario con cada venta.', 'https://youtu.be/krTWF1adMPs', 'AC'),
-('6', '1', '6. Alta de Cajas y Operadores', 'Realiza el alta de las cajas registradoras que utilizarás en tu negocio, así como el alta de todos los operadores. ¡Descúbrelo!', 'https://youtu.be/wHnLWIp1oa4', 'AC'),
-('7', '1', '7. Operación del Punto de Venta', 'Conoce cuales son las funciones principales para la operación del punto de venta. (ventas, cancelaciones, cobros y corte de caja)', 'https://youtu.be/gP9BKqxBXb8', 'AC'),
-('8', '1', '8. Consulta de Precios, Movimientos de Almacén', 'Aprende a realizar: consulta de precios, retiro de valores, movimientos de almacén, devolución de clientes, lista de funciones.', 'https://youtu.be/ldR_SEmiDgs', 'AC'),
-('9', '2', '1. Configuración Factura Electrónica', 'Aprende a realizar la configuración de la facturación electrónica, debes tener tus sellos digitales y tu contraseña disponibles.', 'https://youtu.be/P388ztSu8SY', 'AC'),
-('10', '2', '2. Formato de Factura', 'Configura el formato de factura ya sea para usar en ticket o bien en tamaño carta.', 'https://youtu.be/Kr38yCgk4UE', 'AC'),
-('11', '2', '3. Compra de Timbres para CFDI', 'Listo para facturar? Aprende cómo adquirir tus timbres en Community y tenerlos disponibles para comenzar a facturar.', 'https://youtu.be/vTonV_2QeAs', 'AC'),
-('12', '2', '4. Factura Electrónica', 'Realiza la emisión de tus facturas electrónicas desde el Punto de Venta.', 'https://youtu.be/z1HNbIyP6vU', 'AC'),
-('13', '2', '5. Envío de Factura por E-Mail', 'Envía por correo electrónica la(s) facturas emitidas a tus clientes.', 'https://youtu.be/jUW6vGaiPpE', 'AC'),
-('14', '2', '6. Clasificación de Productos', 'Usa los clasificadores de productos para ver reportes más específicos, con estos puedes configurar promociones, ofertas y monitorear tu información al máximo.', 'https://youtu.be/Z9yealvhW5Q', 'AC'),
-('15', '2', '7. Reportes', 'Conoce los reportes que puedes imprimir desde el punto de venta y la forma en la que puedes revisar tus reportes administrativos.', 'https://youtu.be/G_KOu8KEC0A', 'AC'),
-('16', '2', '8. Configuración de Promociones', 'Configura diferentes descuentos y promociones en tu Punto de Venta.', 'https://youtu.be/h7APZeCA6JE', 'AC'),
-('17', '2', '9. Formas de Pago', 'Aprende cómo se configuran las diferentes formas de pago en el Punto de Venta.', 'https://youtu.be/kXqMRPgvFqs', 'AC'),
-('18', '2', '10. Optimización de Menús', 'Aprende a restringir y optimizar los menús que más utilizas a través de permisos de usuarios (catálogos, ventas, inventarios y finanzas).', 'https://youtu.be/kQ-PATBDB48', 'AC'),
-('19', '3', '1. Cotizaciones', 'Conoce la forma mas sencilla de realizar cotizaciones en el punto de venta ManagementPro y posteriormente realizar el cobro de ellas.', 'https://youtu.be/S-YT1v7E4NE', 'AC'),
-('20', '3', '2. Alta y Venta de Productos a Granel', 'Conoce la forma de dar de alta los productos que vendes a Granel y como realizar su venta desde ManagementPro Retail.', 'https://youtu.be/AIST1QPsRWg', 'AC'),
-('21', '3', '3. Configuración Descuentos por Volumen', 'Aprende a realizar la configuración de descuentos por volumen por artículo en la versión Retail.', 'https://youtu.be/3FDN7tW6GfA', 'AC'),
-('22', '3', '4. Generar Ventas a Crédito', 'Aprende a generar ventas a crédito en el punto de venta.', 'https://youtu.be/vfhBz9wErLA', 'AC'),
-('23', '3', '5. Cobro de Ventas a Crédito', 'Aprende a realizar el cobro de las ventas a crédito en el punto de venta.', 'https://youtu.be/ARz8x6ssCh0', 'AC'),
-('24', '3', '6. Logo en el Formato de Ticket', 'Conoce la forma de como agregar tu logo en tu formato de ticket. Versión Retail!', 'https://youtu.be/C2_wJTZtazA', 'AC'),
-('25', '3', '7. Monedero Electrónico', 'Aprende a configurar el sistema para otorgarle a tus clientes un monedero electrónico con puntos para recibir beneficios en tu negocio.', 'https://youtu.be/50BQPpssIsw', 'AC'),
-('26', '4', '1. Variables del Punto de Venta', 'Conoce la forma de configurar las variables para procesos especiales del punto de venta.', 'https://youtu.be/GWb7fGGzX-E', 'AC'),
-('27', '4', '2. Alta de Vendedores', 'Si necesitas manejar comisiones debes dar de alta a tus vendedores para poder asignarlos a cada venta. En este video te indicamos donde debes de dar de alta a los vendedores.', 'https://youtu.be/YKvSyhuB9Jg', 'AC'),
-('28', '4', '3. Cambio de Vendedor	', 'Configura el punto de venta para que te permita asignar un vendedor a cada venta que realices.', 'https://youtu.be/olf5_n5FYuA', 'AC'),
-('29', '4', '4. Alta Tipo de Movimientos de Almacén', 'En este video te mostraremos como dar de alta diferentes movimientos de almacén, esto te permitirá tener un mejor control sobre las entradas y salidas de productos.', 'https://youtu.be/H3QILjVp0FA', 'AC'),
-('30', '4', '5. Captura Movimientos de Almacén', 'Aprende como aplicar cada tipo de movimiento de almacén desde el punto de venta Retail.', 'https://youtu.be/aed3iXHaPg0', 'AC'),
-('31', '4', '6. Ajuste de  Inventario\r\n', 'Aprende a realizar ajustes a su inventario en caso de tener diferencias entre el físico y el que te indica el sistema.', 'https://youtu.be/DL3H-g0sotU', 'AC'),
-('32', '4', '7. Descarga de Series y Lotes', 'Si tus productos manejan lotes y utilizas el punto de venta, conoce lo necesario para configurar y así pueda descargarse el inventario de los productos.', 'https://youtu.be/TRcfcyKaL2o', 'AC'),
-('33', '5', '1. Imagen de Productos', 'Aprende a realizar la carga de imágenes a tu catálogo de productos y que estos se visualicen en el punto de venta.', 'https://youtu.be/zGiRrTYf-SI', 'AC'),
-('34', '5', '2. Productos Kit', 'Los productos KIT son aquellos que estan confirmados por mas de 2 productos diferentes y que en combinación puedes o no tener un precio especial. Aquí te mostramos como utilizar este tipo de productos en el punto de venta.', 'https://youtu.be/09xHTBkNKGI', 'AC'),
-('35', '5', '3. Productos Negados', 'Los productos negados son aquellos que dejamos de vender por no tener en existencias, En el siguiente video te mostramos como utilizar esta opción.', 'https://youtu.be/ff6dw9rUq4o', 'AC'),
-('36', '5', '4. Tallas y Colores', 'Conoce la forma en la que se configuran productos de talla color que se utilizan generalmente en giros como: boutique y/o zapatearías.', 'https://youtu.be/D37Z518Pcqo', 'AC'),
-('37', '5', '5. Configuración de Monedero Electrónico', 'Fideliza a tus clientes otorgándoles monederos electrónicos, en el siguiente video te indicaremos como configurarlo en MangementPro Retail', 'https://youtu.be/q1tvPxSXlLA', 'AC'),
-('38', '5', '6. Operación de Monedero Electrónico', 'Conoce la forma de habilitar el monedero en el punto de venta para acumular puntos o dinero... y la forma en la que podemos realizar cobros con el mismo.', 'https://youtu.be/fj6TZLsEzp8', 'AC'),
-('39', '5', '7. Operación de Servicio a Domicilio', 'Si ofreces a tus clientes la opción de servicio a domicilio, aquí te mostramos como utilizar esta opción en el punto de venta.\r\n', 'https://youtu.be/pWK9GuKuFfQ', 'AC'),
-('40', '5', '8. Ventas Pendientes', 'No dejes a tu cliente esperando para cobrarle, aquí te mostraremos como dejar una venta en modo pendiente para poder cobrarle al cliente que sigue en la fila.', 'https://youtu.be/tjBks_GFius', 'AC'),
-('41', '5', '9. Cancelación Nota de Venta', 'En el siguiente video te mostraremos la forma de cancelar una nota de venta. Esta opción solo esta disponible cuando la venta es del mismo día y previo a realizar el corte de caja.', 'https://youtu.be/DYB3KR9QSho', 'AC'),
-('42', '5', '10. Formatos del Punto de Venta', 'En el siguiente video te mostraremos los videos que se ocupan del punto de venta que pueden personalizarse.\r\nNivel de complejidad: Intermedio', 'https://youtu.be/1FliBiKDI3o', 'AC');
+('1', '1', '1. Crear Base de Datos', 'Aprende a crear una base de datos en el sistema y realizar la configuración inicial de tu empresa.', 'https://www.youtube.com/embed/LIo4vWmLQZg', 'AC'),
+('2', '1', '2. Catálogo de Clientes', 'Conocerás todos los campos que puedes utilizar para dar de alta la información de los clientes.', 'https://www.youtube.com/embed/hknPGWIXnLw', 'AC'),
+('3', '1', '3. Catálogo de Productos', 'Conoce la pantalla y aprende donde y cómo debes capturar cada uno de tus productos de manera manual en el Punto de Venta.', 'https://www.youtube.com/embed/XPJgSLKJVq4', 'AC'),
+('4', '1', '4. Carga Masiva de Clientes y Productos', '¿Demasiados productos para capturarlos uno por uno? No te preocupes, aprende a realizar una carga masiva de productos desde un archivo en formato MS Excel.', 'https://www.youtube.com/embed/itRk_r5_-SU', 'AC'),
+('5', '1', '5. Carga Inicial de Inventarios', 'Realiza la carga inicial de tus inventarios y configura el sistema para que los productos se descuenten del inventario con cada venta.', 'https://www.youtube.com/embed/krTWF1adMPs', 'AC'),
+('6', '1', '6. Alta de Cajas y Operadores', 'Realiza el alta de las cajas registradoras que utilizarás en tu negocio, así como el alta de todos los operadores. ¡Descúbrelo!', 'https://www.youtube.com/embed/wHnLWIp1oa4', 'AC'),
+('7', '1', '7. Operación del Punto de Venta', 'Conoce cuales son las funciones principales para la operación del punto de venta. (ventas, cancelaciones, cobros y corte de caja)', 'https://www.youtube.com/embed/gP9BKqxBXb8', 'AC'),
+('8', '1', '8. Consulta de Precios, Movimientos de Almacén', 'Aprende a realizar: consulta de precios, retiro de valores, movimientos de almacén, devolución de clientes, lista de funciones.', 'https://www.youtube.com/embed/ldR_SEmiDgs', 'AC'),
+('9', '2', '1. Configuración Factura Electrónica', 'Aprende a realizar la configuración de la facturación electrónica, debes tener tus sellos digitales y tu contraseña disponibles.', 'https://www.youtube.com/embed/P388ztSu8SY', 'AC'),
+('10', '2', '2. Formato de Factura', 'Configura el formato de factura ya sea para usar en ticket o bien en tamaño carta.', 'https://www.youtube.com/embed/Kr38yCgk4UE', 'AC'),
+('11', '2', '3. Compra de Timbres para CFDI', 'Listo para facturar? Aprende cómo adquirir tus timbres en Community y tenerlos disponibles para comenzar a facturar.', 'https://www.youtube.com/embed/vTonV_2QeAs', 'AC'),
+('12', '2', '4. Factura Electrónica', 'Realiza la emisión de tus facturas electrónicas desde el Punto de Venta.', 'https://www.youtube.com/embed/z1HNbIyP6vU', 'AC'),
+('13', '2', '5. Envío de Factura por E-Mail', 'Envía por correo electrónica la(s) facturas emitidas a tus clientes.', 'https://www.youtube.com/embed/jUW6vGaiPpE', 'AC'),
+('14', '2', '6. Clasificación de Productos', 'Usa los clasificadores de productos para ver reportes más específicos, con estos puedes configurar promociones, ofertas y monitorear tu información al máximo.', 'https://www.youtube.com/embed/Z9yealvhW5Q', 'AC'),
+('15', '2', '7. Reportes', 'Conoce los reportes que puedes imprimir desde el punto de venta y la forma en la que puedes revisar tus reportes administrativos.', 'https://www.youtube.com/embed/G_KOu8KEC0A', 'AC'),
+('16', '2', '8. Configuración de Promociones', 'Configura diferentes descuentos y promociones en tu Punto de Venta.', 'https://www.youtube.com/embed/h7APZeCA6JE', 'AC'),
+('17', '2', '9. Formas de Pago', 'Aprende cómo se configuran las diferentes formas de pago en el Punto de Venta.', 'https://www.youtube.com/embed/kXqMRPgvFqs', 'AC'),
+('18', '2', '10. Optimización de Menús', 'Aprende a restringir y optimizar los menús que más utilizas a través de permisos de usuarios (catálogos, ventas, inventarios y finanzas).', 'https://www.youtube.com/embed/kQ-PATBDB48', 'AC'),
+('19', '3', '1. Cotizaciones', 'Conoce la forma mas sencilla de realizar cotizaciones en el punto de venta ManagementPro y posteriormente realizar el cobro de ellas.', 'https://www.youtube.com/embed/S-YT1v7E4NE', 'AC'),
+('20', '3', '2. Alta y Venta de Productos a Granel', 'Conoce la forma de dar de alta los productos que vendes a Granel y como realizar su venta desde ManagementPro Retail.', 'https://www.youtube.com/embed/AIST1QPsRWg', 'AC'),
+('21', '3', '3. Configuración Descuentos por Volumen', 'Aprende a realizar la configuración de descuentos por volumen por artículo en la versión Retail.', 'https://www.youtube.com/embed/3FDN7tW6GfA', 'AC'),
+('22', '3', '4. Generar Ventas a Crédito', 'Aprende a generar ventas a crédito en el punto de venta.', 'https://www.youtube.com/embed/vfhBz9wErLA', 'AC'),
+('23', '3', '5. Cobro de Ventas a Crédito', 'Aprende a realizar el cobro de las ventas a crédito en el punto de venta.', 'https://www.youtube.com/embed/ARz8x6ssCh0', 'AC'),
+('24', '3', '6. Logo en el Formato de Ticket', 'Conoce la forma de como agregar tu logo en tu formato de ticket. Versión Retail!', 'https://www.youtube.com/embed/C2_wJTZtazA', 'AC'),
+('25', '3', '7. Monedero Electrónico', 'Aprende a configurar el sistema para otorgarle a tus clientes un monedero electrónico con puntos para recibir beneficios en tu negocio.', 'https://www.youtube.com/embed/50BQPpssIsw', 'AC'),
+('26', '4', '1. Variables del Punto de Venta', 'Conoce la forma de configurar las variables para procesos especiales del punto de venta.', 'https://www.youtube.com/embed/GWb7fGGzX-E', 'AC'),
+('27', '4', '2. Alta de Vendedores', 'Si necesitas manejar comisiones debes dar de alta a tus vendedores para poder asignarlos a cada venta. En este video te indicamos donde debes de dar de alta a los vendedores.', 'https://www.youtube.com/embed/YKvSyhuB9Jg', 'AC'),
+('28', '4', '3. Cambio de Vendedor	', 'Configura el punto de venta para que te permita asignar un vendedor a cada venta que realices.', 'https://www.youtube.com/embed/olf5_n5FYuA', 'AC'),
+('29', '4', '4. Alta Tipo de Movimientos de Almacén', 'En este video te mostraremos como dar de alta diferentes movimientos de almacén, esto te permitirá tener un mejor control sobre las entradas y salidas de productos.', 'https://www.youtube.com/embed/H3QILjVp0FA', 'AC'),
+('30', '4', '5. Captura Movimientos de Almacén', 'Aprende como aplicar cada tipo de movimiento de almacén desde el punto de venta Retail.', 'https://www.youtube.com/embed/aed3iXHaPg0', 'AC'),
+('31', '4', '6. Ajuste de  Inventario\r\n', 'Aprende a realizar ajustes a su inventario en caso de tener diferencias entre el físico y el que te indica el sistema.', 'https://www.youtube.com/embed/DL3H-g0sotU', 'AC'),
+('32', '4', '7. Descarga de Series y Lotes', 'Si tus productos manejan lotes y utilizas el punto de venta, conoce lo necesario para configurar y así pueda descargarse el inventario de los productos.', 'https://www.youtube.com/embed/TRcfcyKaL2o', 'AC'),
+('33', '5', '1. Imagen de Productos', 'Aprende a realizar la carga de imágenes a tu catálogo de productos y que estos se visualicen en el punto de venta.', 'https://www.youtube.com/embed/zGiRrTYf-SI', 'AC'),
+('34', '5', '2. Productos Kit', 'Los productos KIT son aquellos que estan confirmados por mas de 2 productos diferentes y que en combinación puedes o no tener un precio especial. Aquí te mostramos como utilizar este tipo de productos en el punto de venta.', 'https://www.youtube.com/embed/09xHTBkNKGI', 'AC'),
+('35', '5', '3. Productos Negados', 'Los productos negados son aquellos que dejamos de vender por no tener en existencias, En el siguiente video te mostramos como utilizar esta opción.', 'https://www.youtube.com/embed/ff6dw9rUq4o', 'AC'),
+('36', '5', '4. Tallas y Colores', 'Conoce la forma en la que se configuran productos de talla color que se utilizan generalmente en giros como: boutique y/o zapatearías.', 'https://www.youtube.com/embed/D37Z518Pcqo', 'AC'),
+('37', '5', '5. Configuración de Monedero Electrónico', 'Fideliza a tus clientes otorgándoles monederos electrónicos, en el siguiente video te indicaremos como configurarlo en MangementPro Retail', 'https://www.youtube.com/embed/q1tvPxSXlLA', 'AC'),
+('38', '5', '6. Operación de Monedero Electrónico', 'Conoce la forma de habilitar el monedero en el punto de venta para acumular puntos o dinero... y la forma en la que podemos realizar cobros con el mismo.', 'https://www.youtube.com/embed/fj6TZLsEzp8', 'AC'),
+('39', '5', '7. Operación de Servicio a Domicilio', 'Si ofreces a tus clientes la opción de servicio a domicilio, aquí te mostramos como utilizar esta opción en el punto de venta.\r\n', 'https://www.youtube.com/embed/pWK9GuKuFfQ', 'AC'),
+('40', '5', '8. Ventas Pendientes', 'No dejes a tu cliente esperando para cobrarle, aquí te mostraremos como dejar una venta en modo pendiente para poder cobrarle al cliente que sigue en la fila.', 'https://www.youtube.com/embed/tjBks_GFius', 'AC'),
+('41', '5', '9. Cancelación Nota de Venta', 'En el siguiente video te mostraremos la forma de cancelar una nota de venta. Esta opción solo esta disponible cuando la venta es del mismo día y previo a realizar el corte de caja.', 'https://www.youtube.com/embed/DYB3KR9QSho', 'AC'),
+('42', '5', '10. Formatos del Punto de Venta', 'En el siguiente video te mostraremos los videos que se ocupan del punto de venta que pueden personalizarse.\r\nNivel de complejidad: Intermedio', 'https://www.youtube.com/embed/1FliBiKDI3o', 'AC');
 
 -- --------------------------------------------------------
 
@@ -206,6 +217,12 @@ INSERT INTO `usuario` (`Us_Cve_Usuario`, `Tu_Cve_Tipo_Usuario`, `Us_Descripcion`
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `avance`
+--
+ALTER TABLE `avance`
+  ADD PRIMARY KEY (`Cr_Cve_Curso`,`Cv_Cve_Curso_Video`) USING BTREE;
 
 --
 -- Indices de la tabla `curso`

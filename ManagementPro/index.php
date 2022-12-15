@@ -29,11 +29,19 @@
   </head>
   <body>
     <?php
-      include "header-gray.php";
+      $page_base = './';
+      include "./inc/base/header-gray.php";
     ?>
     <div class="fondo_gris">
       <div class="ancho contenedor_titulo">
         <div class="titulo_inicio">
+        <div class="ancho" style="text-align:center; color:#cc9e2f; font-weight: bold;">
+        <?php 
+          date_default_timezone_set("Mexico/General");
+          $fecha= date("D j, F, Y");
+          echo "$fecha";
+        ?>
+        </div>
           <h1 class="titulo">Portal de capacitación ManagementPro</h1>
           <p>
             Capacítate en nuestro mejor punto de venta ManagementPro | RETAIL
@@ -210,6 +218,11 @@
           <div class="circulo">
             <p>1</p>
           </div>
+          <div class="linea2">
+            <hr class="circle">
+            <hr class="circle">
+            <hr class="circle">
+          </div>
           <p>
             Elige el curso y ve un paso más allá para lograr tu objetivo de
             aprendizaje.
@@ -219,6 +232,11 @@
           <div class="circulo">
             <p>2</p>
           </div>
+          <div class="linea2">
+            <hr class="circle">
+            <hr class="circle">
+            <hr class="circle">
+          </div>
           <p>
             Adquiere nuevas competencias con videotutoriales de corta duración.
           </p>
@@ -226,6 +244,11 @@
         <article>
           <div class="circulo">
             <p>3</p>
+          </div>
+          <div class="linea2">
+            <hr class="circle">
+            <hr class="circle">
+            <hr class="circle">
           </div>
           <p>
             Una vez capacitándose podrás tener un gran habilidad para usar el

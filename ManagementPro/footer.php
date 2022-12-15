@@ -1,8 +1,15 @@
+<?php 
+    if(!isset($page_base)){
+        $page_base = '../../';
+    }
+?>
 <footer>
       <div id="contenidofooter" class="ancho">
-        <figure>
-          <img src="imagenes/logo_gris.png" alt="" />
-        </figure>
+        <a href="<?php echo $page_base ?>">
+          <figure>
+            <img src="<?php echo $page_base ?>imagenes/logo_gris.png" alt="" />
+          </figure>
+        </a>
         <div id="centro">
           <b>Contáctenos</b>
           <hr />

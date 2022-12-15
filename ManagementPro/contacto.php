@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +29,8 @@
   </head>
   <body>
     <?php
-      include "header-white.php";
+      $page_base = './';
+      include "./inc/base/header-white.php";
     ?>
     <section class="ancho contacto">
       <h2 class="titulo">Contáctanos</h2>
