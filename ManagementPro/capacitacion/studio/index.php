@@ -25,6 +25,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <link href="pace-master/themes/red/pace-theme-center-atom.css" rel="stylesheet" />
+    <script src="pace-master/pace.min.js"></script>
     <script
       src="https://kit.fontawesome.com/2ee0245f3d.js"
       crossorigin="anonymous"
@@ -46,6 +48,7 @@
         $result = mysqli_query($conn, $query);
         $numClases = mysqli_num_rows($result);
         ?>
+    <input type="button" value="refresh" onclick="location.reload();">
     <div class="division ancho">
       <div class="playlist">
         <h2 class="subtitulo_azul" id="txtTitulo"><?php echo $iTitulo; ?></h2>

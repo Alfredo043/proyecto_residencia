@@ -52,26 +52,37 @@
               <li><a href="<?php echo $page_base ?>soporte.php" class="linea">Soporte</a></li>
               <span>|</span>
               <li><a href="<?php echo $page_base ?>contacto.php" class="linea">Contacto</a></li>
-              <?php if(isset($_SESSION['usuario'])?$_SESSION['usuario']:''!=''){ ?>
-              <li>
-                <a href="<?php echo $page_base ?>admin/usuarios/" id="btn_azul"
-                  >Administrar <i class="fa-solid fa-user"></i
-                ></a>
-              </li>
-              <?php if((isset($_SESSION['tipo'])?$_SESSION['tipo']:'0')!=='1'){ ?>
-              <li>
-                <a href="<?php echo $page_base ?>usuario/logoff/" id="btn_azul"
-                  >Cerrar Sesión <i class="fa-solid fa-user"></i
-                ></a>
-              </li>
-              <?php } ?>
-              <?php }else{ ?>
+              <?php 
+              if(isset($_SESSION['usuario'])?$_SESSION['usuario']:''!=''){ 
+                $tipoUsuario = isset($_SESSION['tipo'])?$_SESSION['tipo']:'0';
+                if($tipoUsuario=='1'){
+                  //Si es admin se muestra el boton administrar
+                  ?>
+                  <li>
+                    <a href="<?php echo $page_base ?>admin/usuarios/" id="btn_azul"
+                      >Administrar <i class="fa-solid fa-user"></i
+                    ></a>
+                  </li>
+                  <?php
+                }else{
+                  //Si no es admin, muestra el boton Salir
+                  ?>
+                  <li>
+                    <a href="<?php echo $page_base ?>usuario/logoff/" id="btn_azul"
+                      >Cerrar Sesión <i class="fa-solid fa-user"></i
+                    ></a>
+                  </li>
+                  <?php
+                }
+              }else{ ?>
               <li>
                 <a href="<?php echo $page_base ?>usuario/login/" id="btn_azul"
                   >Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i
                 ></a>
               </li>
-              <?php } ?>
+              <?php 
+              }
+              ?>
             </ul>
           </nav>
         </div>
