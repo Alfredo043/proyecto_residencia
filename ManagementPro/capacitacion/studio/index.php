@@ -25,8 +25,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link href="pace-master/themes/red/pace-theme-center-atom.css" rel="stylesheet" />
-    <script src="pace-master/pace.min.js"></script>
+    <!-- <link href="pace-master/themes/red/pace-theme-center-atom.css" rel="stylesheet" />
+    <script src="pace-master/pace.min.js"></script> -->
     <script
       src="https://kit.fontawesome.com/2ee0245f3d.js"
       crossorigin="anonymous"
@@ -48,7 +48,7 @@
         $result = mysqli_query($conn, $query);
         $numClases = mysqli_num_rows($result);
         ?>
-    <input type="button" value="refresh" onclick="location.reload();">
+    <!-- <input type="button" value="refresh" onclick="location.reload();"> -->
     <div class="division ancho">
       <div class="playlist">
         <h2 class="subtitulo_azul" id="txtTitulo"><?php echo $iTitulo; ?></h2>
@@ -91,6 +91,15 @@
                     <?php echo $row['Cv_Cve_Curso_Video']; ?>. <?php echo $row['Cv_Titulo']; ?>
                 </a>
             </div>
+
+          <!-- <div id="player"></div>
+          <script>
+            videoId = 'someVideoId';
+            var tag = document.createElement('script');
+            tag.src = "//www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          </script> -->
         <?php 
         }
         mysqli_free_result($result);
@@ -196,6 +205,41 @@
             $('#txtDescripcion').html(descripcion);
             $('#txtUrl').attr('src',url);
         }
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '360',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+
     </script>
   </body>
 </html>

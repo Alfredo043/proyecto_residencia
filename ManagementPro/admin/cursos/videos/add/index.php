@@ -21,6 +21,7 @@
     $bNuevo = true;
     
     $cv_titulo = '';
+    $cv_tiempo = '';
     $cv_url = '';
     $cv_descripcion = '';
 
@@ -33,6 +34,7 @@
         $row = mysqli_fetch_array($result);
 
         $cv_titulo = $row['Cv_Titulo'];
+        $cv_tiempo = $row['Cv_Tiempo'];
         $cv_url = $row['Cv_Url'];
         $cv_descripcion = $row['Cv_Descripcion'];
         $bNuevo = false;
@@ -77,6 +79,7 @@
             <input type="hidden" name="Cr_Cve_Curso" id="Cr_Cve_Curso" value="<?php echo $idCurso ?>" />
             <!-- Añadipo por mi -->
             <input class="elementos" type="text" name="Cv_Titulo" id="Cv_Titulo" placeholder="Escribe el título" value="<?php echo $cv_titulo ?>" required/>
+            <input class="elementos" type="text" name="Cv_Tiempo" id="Cv_Tiempo" placeholder="Escribe el tiempo de duración del video" value="<?php echo $cv_tiempo ?>" required/>
             <input class="elementos" type="text" name="Cv_Url" id="Cv_Url" placeholder="Pega el enlace del video" value="<?php echo $cv_url ?>" required/>
             <textarea class="elementos" rows="3" name="Cv_Descripcion" id="Cv_Descripcion" placeholder="Escribe la descripción"><?php echo $cv_descripcion ?></textarea>
             <!-- Cambiado para que me permitiera registrar -->

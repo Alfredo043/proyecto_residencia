@@ -13,6 +13,7 @@
     $IdCurso = (isset($_POST['Cr_Cve_Curso']))?$_POST['Cr_Cve_Curso']:'';
 
     $Titulo = (isset($_POST['Cv_Titulo']))?$_POST['Cv_Titulo']:'';
+    $Tiempo = (isset($_POST['Cv_Tiempo']))?$_POST['Cv_Tiempo']:'';
     $Enlace = (isset($_POST['Cv_Url']))?$_POST['Cv_Url']:'';
     $Descripcion = (isset($_POST['Cv_Descripcion']))?$_POST['Cv_Descripcion']:'';
 
@@ -26,6 +27,11 @@
 
     if($Titulo==''){
         echo 'Advertencia: Falta el título';
+        return;
+    }
+
+    if($Tiempo==''){
+        echo 'Advertencia: Falta el tiempo';
         return;
     }
 
@@ -75,6 +81,7 @@
             $query .= "   Cr_Cve_Curso, ";
             $query .= "   Cv_Titulo, ";
             $query .= "   Cv_Descripcion, ";
+            $query .= "   Cv_Tiempo, ";
             $query .= "   Cv_Url, ";
             $query .= "   Es_Cve_Estado ";
             $query .= ")VALUES( ";
@@ -82,6 +89,7 @@
             $query .= "   $IdCurso, "; //Tipo usuario 0 - Usuario
             $query .= "   '$Titulo', ";
             $query .= "   '$Descripcion', ";
+            $query .= "   '$Tiempo', ";
             $query .= "   '$Enlace', ";
             $query .= "   'AC')";
         }else{
