@@ -99,6 +99,7 @@
             $query .= "UPDATE Curso_Video SET ";
             $query .= " Cv_Titulo = '".$Titulo."', ";
             $query .= " Cv_Descripcion = '".$Descripcion."', ";
+            $query .= " Cv_Tiempo = '".$Tiempo."', ";
             $query .= " Cv_Url = '".$Enlace."' ";
             $query .= "WHERE Cv_Cve_Curso_Video = '$IdVideo' ";
         }
