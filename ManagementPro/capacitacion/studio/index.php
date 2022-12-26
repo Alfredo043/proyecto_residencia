@@ -4,6 +4,7 @@
   $base_page = '../../';
 
   $idCurso = trim(isset($_GET['id'])?$_GET['id']:'');
+  $idUsuario = (isset($_SESSION['usuario']))?$_SESSION['usuario']:'';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +66,7 @@
         <hr />
         <div class="menutabs">
         <?php 
+        $idCursoV = '';
         $iVideo = '';
         $iDescripcion = '';
         $iTitulo = '';
@@ -73,20 +75,25 @@
         while ($row = mysqli_fetch_assoc($result)){
             $iRow+=1;
             if($iRow==1){
+                $idCursoV = $row['Cv_Cve_Curso_Video'];
                 $iVideo = $row['Cv_Url'];
                 $iTitulo = $row['Cv_Titulo'];
                 $iDescripcion = $row['Cv_Descripcion'];
             }
+
+            $IdYoutube = Get_Youtube_Id($row['Cv_Url']);
+
         ?>
             <div class="check-video">
                 <a 
                     href="#op1" 
-                    onclick="LoadVideo('<?php echo $row['Cv_Cve_Curso_Video']; ?>')" 
+                    onclick="LoadVideoId('<?php echo $row['Cv_Cve_Curso_Video']; ?>')" 
                     id="cv<?php echo $row['Cv_Cve_Curso_Video']; ?>" 
                     class="link" 
                     cv-titulo="<?php echo $row['Cv_Titulo']; ?>" 
                     cv-descripcion="<?php echo $row['Cv_Descripcion']; ?>" 
-                    cv-url="<?php echo $row['Cv_Url']; ?>">
+                    cv-url="<?php echo $row['Cv_Url']; ?>"
+                    cv-id-youtube="<?php echo $IdYoutube; ?>">
                     <i class="tamañoicono fa-solid fa-circle-play"></i>
                     <?php echo $row['Cv_Cve_Curso_Video']; ?>. <?php echo $row['Cv_Titulo']; ?>
                 </a>
@@ -108,15 +115,8 @@
       </div>
       <section id="contenedor_tabs">
         <article id="op1">
-          <div id="contenedoryoutube">
-            <iframe 
-                id="txtUrl"
-                src="<?php echo $iVideo; ?>"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
+          <div id="ContainerYT">
+            <div id="player"></div>
           </div>
           <div class="descripcion">
             <p class="negritas">Descripción</p>
@@ -194,52 +194,107 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../funciones.js"></script>
     <script type="text/javascript">
-        function LoadVideo(id){
-            //Traemos los datos
-            var titulo, descripcion, url;
-            titulo = $('#cv'+id).attr('cv-titulo');
-            descripcion = $('#cv'+id).attr('cv-descripcion');
-            url = $('#cv'+id).attr('cv-url');
-            
-            $('#txtTitulo').html(titulo);
-            $('#txtDescripcion').html(descripcion);
-            $('#txtUrl').attr('src',url);
-        }
+      
+      function LoadVideo(id){
+          //Traemos los datos
+          var titulo, descripcion, url;
+          titulo = $('#cv'+id).attr('cv-titulo');
+          descripcion = $('#cv'+id).attr('cv-descripcion');
+          url = $('#cv'+id).attr('cv-url');
+          
+          $('#txtTitulo').html(titulo);
+          $('#txtDescripcion').html(descripcion);
+          $('#txtUrl').attr('src',url);
+      }
 
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '360',
-          width: '640',
-          videoId: 'M7lc1UVf-VE',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+    </script>
+    <div id="YoutubeScript"></div>
+    <script>
+      var tag = document.createElement('script');
+      var ejecutado = false;
+      var iniciado;
+      var avance;
+
+      //tag.src = "https://www.youtube.com/iframe_api";
+      tag.src = '//www.youtube.com/player_api';
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      
+      function onPlayerReady(event) {
+        changeState();
+      }
+      
+      function changeState(){
+        
+        if (typeof player.getPlayerState != 'function') {
+          return;
+        }
+        
+        //State 1: Video en reproduccion
+        if (player.getPlayerState()== 1 ){
+          
+          //Si no esta activo los intervalos, los activamos
+          if (!ejecutado){
+            iniciado = setInterval(updatetime,5000);
+            ejecutado = true;
+          }
+        }
+        
+        if (player.getPlayerState() == 0 || player.getPlayerState() == 2 ){
+          if(ejecutado){
+            clearInterval(iniciado);
+            ejecutado = false;
+          }
+        }
+        
+        if (player.getPlayerState() == 0 ){
+          //console.log('fin-'+ player.getDuration());
+          updatetime();
+        }
+      };
+      
+      function updatetime(){
+        
+        $.ajax({
+          type: "POST",
+          url: "./action/save.php",
+          timeout: 5000,
+          data: {
+            Curso: '<?php echo $idCurso; ?>',
+            Video: '<?php echo $idCursoV; ?>',
+            Duracion: player.getDuration(),
+            Segundos: player.getCurrentTime()
+          },
+          success: function(data){
+            //console.log(player.getDuration() + ' - ' + player.getCurrentTime());
+            console.log(data);
+          },
+          error: function(a,b,c){
+            console.log('err: ' + c);
           }
         });
       }
 
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
+      function LoadVideoId(id){
+        idVideo = $('#cv'+id).attr('cv-id-youtube');
+
+        $.ajax({
+          type:'POST',
+          url:'./action/load.php',
+          data:{
+            idYoutube:idVideo
+          },
+          success:function(data){
+            $('#ContainerYT').html(data);
+          },error:function(a,b,c){
+            console.log(c);
+          }
+        });
       }
 
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-
+      $(document).ready(function(){
+        LoadVideoId('<?php echo $idCursoV; ?>');
+      });
     </script>
   </body>
 </html>

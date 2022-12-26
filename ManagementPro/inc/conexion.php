@@ -6,7 +6,7 @@
         $db_server = 'localhost';
         $db_name = 'proyecto';
         $db_user = 'root';
-        $db_pass = '';
+        $db_pass = 'lisa';
         
         $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
         
@@ -48,5 +48,10 @@
         $gvvalor = 'Error: '.$e->getMessage();
       }
       return $gvvalor;
+    }
+
+    function Get_Youtube_Id($url){
+      preg_match('/(http(s|):|)\/\/(www\.|)yout(.*?)\/(embed\/|watch.*?v=|)([a-z_A-Z0-9\-]{11})/i', $url, $results);
+      return $results[6];
     }
 ?>
