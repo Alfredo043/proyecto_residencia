@@ -23,11 +23,28 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script
       src="https://kit.fontawesome.com/2ee0245f3d.js"
       crossorigin="anonymous"
     ></script>
     <script src="<?php echo $base_page; ?>js/wow.min.js"></script>
+    <style>
+      #menu_fixed {
+        height: 110px;
+        /* margin: 10px 0 0; */
+        transition: height 1s ease 0s;
+      }
+      .fixed .cabecera {
+        background-color: white;
+        box-shadow: 0 6px 6px -6px #777;
+        width: 100%;
+        /* height: 55px !important; */
+        position: fixed;
+        top: 0;
+        z-index: 3;
+      }
+    </style>
   </head>
   <body>
     <?php
@@ -35,6 +52,7 @@
       include "../inc/base/header-white.php";
     ?>
     <section class="ancho capacitacion">
+      <br>
       <div class="contenido_centrado">
         <h2 class="titulo">Portal Capacitación ManagementPro</h2>
         <p>
@@ -83,5 +101,20 @@
     <!-- SCRIPT FUNCIONES -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?php echo $base_page; ?>funciones.js"></script>
+
+    <script>
+      $(function(){
+        // Check the initial Poistion of the Sticky Header
+        var stickyHeaderTop = $('#menu_fixed').offset().top + 160;
+ 
+        $(window).scroll(function(){
+          if( $(window).scrollTop() > stickyHeaderTop ) {
+                  $('#menu_fixed').addClass('fixed');
+          } else {
+                  $('#menu_fixed').removeClass('fixed');
+          }
+        });
+    });
+    </script>
   </body>
 </html>

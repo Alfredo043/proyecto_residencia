@@ -6,7 +6,7 @@
     <a class="ir_arriba" href="#">
       <i class="fa fa-arrow-up fa-1x"></i>
     </a>
-    <header>
+    <header id="menu_fixed">
       <div class="cabecera_azul">
         <div class="ancho cabeceraredes">
           <div class="correo">

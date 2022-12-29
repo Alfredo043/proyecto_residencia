@@ -2,6 +2,10 @@
   session_start();
   include ("inc/conexion.php");
   $base_page = '';
+
+  $query="SELECT * FROM Curso_Video WHERE Cr_Cve_Curso";
+  $result = mysqli_query($conn, $query);
+  $numClases = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +43,7 @@
     ?>
     <!-- <input type="button" value="refresh" onclick="location.reload();"> -->
     <section class="ancho logros" style="text-align: -webkit-left;">
-    <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:65"></div>
+    
       <div class="contenido_left">
         <h2 class="titulo">ManagementPro | Retail</h2>
         <h3>
@@ -65,7 +69,12 @@
           while($row = mysqli_fetch_array($result)){
         ?>
         <article id="curso<?php echo $row['Cr_Cve_Curso']; ?>" class="etapa">
-          <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:65"></div>
+        <div class="circlePercent">
+          <div class="counter" data-percent="0"></div>
+          <div class="progress"></div>
+          <div class="progressEnd"></div>
+        </div>
+          <!-- <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:65"></div> -->
           <br>
           <h2 class="subtitulo_naranja" href="./studio/?id=<?php echo $row['Cr_Cve_Curso']; ?>"><?php echo $row['Cr_Titulo']; ?></h2>
         </article>
@@ -100,5 +109,32 @@
     <!-- SCRIPT FUNCIONES -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="funciones.js"></script>
+
+    <script>
+    function setProgress(id, Cuv_Tiempo) {
+      var reporte = Cuv_Tiempo * 3.6,
+        transform = /MSIE 9/.test(navigator.userAgent)
+          ? "msTransform"
+          : "transform";
+      id
+        .querySelector(".counter")
+        .setAttribute("data-percent", Math.round(Cuv_Tiempo));
+      id.querySelector(".progressEnd").style[transform] =
+        "rotate(" + reporte + "deg)";
+      id.querySelector(".progress").style[transform] =
+        "rotate(" + reporte + "deg)";
+      if (Cuv_Tiempo >= 50 && !/(^|\s)fiftyPlus(\s|$)/.test(id.className))
+        id.className += " fiftyPlus";
+    }
+
+    (function () {
+      var id = document.querySelector(".circlePercent"),
+        Cuv_Tiempo = 0;
+      (function animate() {
+        setProgress(Cv_Tiempo, (Cuv_Tiempo += 0.25));
+        if (Cuv_Tiempo < 100) setTimeout(animate, 15);
+      })();
+    })();
+  </script>
   </body>
 </html>
