@@ -29,7 +29,7 @@
     <script src="js/wow.min.js"></script>
     <style>
       #menu_fixed {
-        height: 110px;
+        height: 182px;
         /* margin: 10px 0 0; */
         transition: height 1s ease 0s;
       }

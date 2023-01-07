@@ -29,7 +29,7 @@
     <script src="js/wow.min.js"></script>
     <style>
       #menu_fixed {
-        height: 110px;
+        height: 182px;
         /* margin: 10px 0 0; */
         transition: height 1s ease 0s;
       }
@@ -50,7 +50,7 @@
       include "./inc/base/header-white.php";
     ?>
     <section class="ancho contacto">
-      <br>
+      <!-- <br> -->
       <h2 class="titulo">Contáctanos</h2>
       <div class="informacion_contacto">
         <iframe

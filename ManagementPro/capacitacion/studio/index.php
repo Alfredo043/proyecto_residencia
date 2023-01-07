@@ -26,6 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- <link href="pace-master/themes/red/pace-theme-center-atom.css" rel="stylesheet" />
     <script src="pace-master/pace.min.js"></script> -->
     <script
@@ -33,6 +34,22 @@
       crossorigin="anonymous"
     ></script>
     <script src="<?php echo $base_page; ?>js/wow.min.js"></script>
+    <style>
+      #menu_fixed {
+        height: 182px;
+        /* margin: 10px 0 0; */
+        transition: height 1s ease 0s;
+      }
+      .fixed .cabecera {
+        background-color: white;
+        box-shadow: 0 6px 6px -6px #777;
+        width: 100%;
+        /* height: 55px !important; */
+        position: fixed;
+        top: 0;
+        z-index: 3;
+      }
+    </style>
   </head>
   <body>
     <?php
@@ -295,6 +312,20 @@
       $(document).ready(function(){
         LoadVideoId('<?php echo $idCursoV; ?>');
       });
+    </script>
+    <script>
+      $(function(){
+        // Check the initial Poistion of the Sticky Header
+        var stickyHeaderTop = $('#menu_fixed').offset().top + 160;
+ 
+        $(window).scroll(function(){
+          if( $(window).scrollTop() > stickyHeaderTop ) {
+                  $('#menu_fixed').addClass('fixed');
+          } else {
+                  $('#menu_fixed').removeClass('fixed');
+          }
+        });
+    });
     </script>
   </body>
 </html>

@@ -31,7 +31,7 @@
     <script src="<?php echo $base_page; ?>js/wow.min.js"></script>
     <style>
       #menu_fixed {
-        height: 110px;
+        height: 182px;
         /* margin: 10px 0 0; */
         transition: height 1s ease 0s;
       }
@@ -52,7 +52,7 @@
       include "../inc/base/header-white.php";
     ?>
     <section class="ancho capacitacion">
-      <br>
+      <!-- <br> -->
       <div class="contenido_centrado">
         <h2 class="titulo">Portal Capacitación ManagementPro</h2>
         <p>

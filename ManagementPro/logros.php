@@ -2,10 +2,6 @@
   session_start();
   include ("inc/conexion.php");
   $base_page = '';
-
-  $query="SELECT * FROM Curso_Video WHERE Cr_Cve_Curso";
-  $result = mysqli_query($conn, $query);
-  $numClases = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +35,7 @@
   <body>
     <?php
       $page_base = './';
-      include "./inc/base/header-gray-user.php";
+      include "./inc/base/header-white.php";
     ?>
     <!-- <input type="button" value="refresh" onclick="location.reload();"> -->
     <section class="ancho logros" style="text-align: -webkit-left;">
@@ -70,13 +66,51 @@
         ?>
         <article id="curso<?php echo $row['Cr_Cve_Curso']; ?>" class="etapa">
         <div class="circlePercent">
-          <div class="counter" data-percent="0"></div>
+        <?php 
+          try{
+              $query = "";
+              $query .= "SELECT Cr_Cve_Curso, SUM(Cv_Tiempo)";
+              $query .= "FROM Curso_Video ";
+              $query .= "GROUP BY Cr_Cve_Curso ";
+              $result = mysqli_query($conn, $query);
+            }catch(Exception $e){
+              echo 'Error: '.$e->getMessage(); 
+            }
+        ?>
+        <?php
+          while($row = mysqli_fetch_array($result)){
+        ?>
+         <?php 
+          try{
+              $query = "";
+              $query .= "SELECT Cr_Cve_Curso, Cr_Cve_Usuario, SUM(Cuv_Tiempo)";
+              $query .= "FROM Curso_Usuario_Video ";
+              $query .= "GROUP BY Cr_Cve_Curso, Us_Cve_Usuario ";
+              $result = mysqli_query($conn, $query);
+            }catch(Exception $e){
+              echo 'Error: '.$e->getMessage(); 
+            }
+        ?>
+        <?php
+          while($row = mysqli_fetch_array($result)){
+        ?>
+          <div class="counter" data-percent="0" value="obtenerPorcentaje"></div>
           <div class="progress"></div>
           <div class="progressEnd"></div>
         </div>
           <!-- <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:65"></div> -->
           <br>
           <h2 class="subtitulo_naranja" href="./studio/?id=<?php echo $row['Cr_Cve_Curso']; ?>"><?php echo $row['Cr_Titulo']; ?></h2>
+          <?php
+          }
+
+          mysqli_free_result($result);
+        ?>
+          <?php
+          }
+
+          mysqli_free_result($result);
+        ?>
         </article>
         <?php
           }
@@ -111,30 +145,39 @@
     <script src="funciones.js"></script>
 
     <script>
-    function setProgress(id, Cuv_Tiempo) {
-      var reporte = Cuv_Tiempo * 3.6,
+      function obtenerPorcentaje(Cuv_Tiempo) {
+          $total = (float)$row['Cv_Tiempo']; // Obtener total de la base de datos
+          $porcentaje = ((float)Cuv_Tiempo * 100) / $total; // Regla de tres
+          $porcentaje = round($porcentaje, 0);  // Quitar los decimales
+          return $porcentaje;
+      }
+    </script>
+
+    <!-- <script>
+    function setProgress(elem, percent) {
+      var degrees = percent * 3.6,
         transform = /MSIE 9/.test(navigator.userAgent)
           ? "msTransform"
           : "transform";
-      id
+      elem
         .querySelector(".counter")
-        .setAttribute("data-percent", Math.round(Cuv_Tiempo));
-      id.querySelector(".progressEnd").style[transform] =
-        "rotate(" + reporte + "deg)";
-      id.querySelector(".progress").style[transform] =
-        "rotate(" + reporte + "deg)";
-      if (Cuv_Tiempo >= 50 && !/(^|\s)fiftyPlus(\s|$)/.test(id.className))
-        id.className += " fiftyPlus";
+        .setAttribute("data-percent", Math.round(percent));
+      elem.querySelector(".progressEnd").style[transform] =
+        "rotate(" + degrees + "deg)";
+      elem.querySelector(".progress").style[transform] =
+        "rotate(" + degrees + "deg)";
+      if (percent >= 50 && !/(^|\s)fiftyPlus(\s|$)/.test(elem.className))
+        elem.className += " fiftyPlus";
     }
 
     (function () {
-      var id = document.querySelector(".circlePercent"),
-        Cuv_Tiempo = 0;
+      var elem = document.querySelector(".circlePercent"),
+        percent = 0;
       (function animate() {
-        setProgress(Cv_Tiempo, (Cuv_Tiempo += 0.25));
-        if (Cuv_Tiempo < 100) setTimeout(animate, 15);
+        setProgress(elem, (percent += 0.25));
+        if (percent < 100) setTimeout(animate, 15);
       })();
     })();
-  </script>
+  </script> -->
   </body>
 </html>
