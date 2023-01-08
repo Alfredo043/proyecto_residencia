@@ -52,7 +52,7 @@
                 $tipoUsuario = isset($_SESSION['tipo'])?$_SESSION['tipo']:'0';
                   //Si es cliente o partner se muestra la sección logros
                   ?>
-                  <li><a href="<?php echo $page_base ?>logros.php" class="linea">Logros</a></li>
+                  <li><a href="<?php echo $page_base ?>logros/" class="linea">Logros</a></li>
                   <span>|</span>
                   <?php
               } ?>

@@ -46,11 +46,11 @@ CREATE TABLE `curso` (
 --
 
 INSERT INTO `curso` (`Cr_Cve_Curso`, `Cr_Titulo`, `Cr_Subtitulo`, `Cr_Descripcion`, `Oper_Alta`, `Fecha_Alta`, `Oper_Modif`, `Fecha_Modif`, `Oper_Baja`, `Fecha_Baja`, `Es_Cve_Estado`) VALUES
-('1', 'NIVEL BÁSICO 1', 'Configuración Inicial', 'En esta sección daremos un vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('2', 'NIVEL BÁSICO 2', 'Configuración Inicial', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('3', 'NIVEL INTERMEDIO 1', 'Configuración inicial Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('4', 'NIVEL AVANZADO 1', 'ManagementPro Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
-('5', 'NIVEL AVANZADO 2', 'ManagementPro Retail', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-04', '', '0000-00-00', '\"', NULL, 'AC');
+('1', 'Configuración Inicial', 'NIVEL BÁSICO 1', 'En esta sección daremos un vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('2', 'Configuración Inicial', 'NIVEL BÁSICO 2', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('3', 'Configuración inicial Retail', 'NIVEL INTERMEDIO 1', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('4', 'ManagementPro Retail', 'NIVEL AVANZADO 1', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-03', '', '0000-00-00', '\"', NULL, 'AC'),
+('5', 'ManagementPro Retail', 'NIVEL AVANZADO 2', 'En esta sección daremos el seguimiento del vistazo general al funcionamiento del punto de venta de ManagementPro.', '2', '2022-12-04', '', '0000-00-00', '\"', NULL, 'AC');
 
 -- --------------------------------------------------------
 

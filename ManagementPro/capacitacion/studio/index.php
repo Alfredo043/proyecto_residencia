@@ -269,6 +269,9 @@
           updatetime();
         }
       };
+
+      var idCursoDef = '<?php echo $idCurso; ?>';
+      var idVideoDef = '<?php echo $idCursoV; ?>';
       
       function updatetime(){
         
@@ -277,8 +280,8 @@
           url: "./action/save.php",
           timeout: 5000,
           data: {
-            Curso: '<?php echo $idCurso; ?>',
-            Video: '<?php echo $idCursoV; ?>',
+            Curso: idCursoDef,
+            Video: idVideoDef,
             Duracion: player.getDuration(),
             Segundos: player.getCurrentTime()
           },
@@ -303,6 +306,7 @@
           },
           success:function(data){
             $('#ContainerYT').html(data);
+            idVideoDef = id;
           },error:function(a,b,c){
             console.log(c);
           }
